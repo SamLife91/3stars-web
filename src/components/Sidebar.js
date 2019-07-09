@@ -1,28 +1,29 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Divider from "@material-ui/core/Divider";
+import Collapse from "@material-ui/core/Collapse";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import SendIcon from "@material-ui/icons/Send";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import StarBorder from "@material-ui/icons/StarBorder";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: "100%",
     maxWidth: 460,
     backgroundColor: theme.palette.background.paper,
-    boxShadow: '0 0 1px 1px grey'
+    boxShadow: "0 0 1px 1px grey"
   },
   nested: {
-    paddingLeft: theme.spacing(4),
-  },
+    paddingLeft: theme.spacing(4)
+  }
 }));
 
 export default function NestedList() {
@@ -34,7 +35,17 @@ export default function NestedList() {
   }
 
   return (
-    <List style={{boxShadow: '0 0 3px 0px #c3c3c3', height: `${100}vh`}}>
+    <List style={{ boxShadow: "0 0 3px 0px #c3c3c3", height: `${100}vh` }}>
+      <div
+        style={{
+          height: 54,
+          display: "flex",
+          alignItems: "center"
+        }}
+      >
+        <ListItem>3 stars admin</ListItem>
+        <Divider />
+      </div>
       <ListItem button>
         <ListItemIcon>
           <SendIcon />

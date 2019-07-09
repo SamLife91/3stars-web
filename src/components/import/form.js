@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -11,6 +11,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -47,6 +48,10 @@ const ImportForm = () => {
     multiline: "Controlled",
     currency: "EUR"
   });
+
+  useEffect(() => {
+    console.log("mounted");
+  }, []);
 
   const handleChange = name => event => {
     setValues({
@@ -272,8 +277,9 @@ const ImportForm = () => {
         </div>
       </div>
       <div>
-        <Button variant="contained" color="primary" className={classes.button}>
-          Primary
+        <Button variant="contained" size="small" className={classes.button}>
+          <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+          Save
         </Button>
       </div>
     </form>
