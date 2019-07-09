@@ -10,11 +10,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
-    // flexWrap: 'wrap',
     flexDirection: "column",
     justifyContent: "space-between"
   },
@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     flex: 1
-    // width: 100,
   },
   dense: {
     marginTop: 19
@@ -39,25 +38,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between"
   }
 }));
-
-const currencies = [
-  {
-    value: "USD",
-    label: "$"
-  },
-  {
-    value: "EUR",
-    label: "€"
-  },
-  {
-    value: "BTC",
-    label: "฿"
-  },
-  {
-    value: "JPY",
-    label: "¥"
-  }
-];
 
 const ImportForm = () => {
   const classes = useStyles();
@@ -180,7 +160,7 @@ const ImportForm = () => {
         </div>
         <div
           style={{
-            flex: 1,
+            flex: 2,
             flexDirection: "column",
             margin: 10
           }}
@@ -290,6 +270,11 @@ const ImportForm = () => {
             />
           </div>
         </div>
+      </div>
+      <div>
+        <Button variant="contained" color="primary" className={classes.button}>
+          Primary
+        </Button>
       </div>
     </form>
   );
