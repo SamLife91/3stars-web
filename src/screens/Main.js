@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Container from '@material-ui/core/Container';
 
 const Main = () => {
   return (
-    <div>
-      <h1>
-        "main component"
-      </h1>
-    </div>
+      <Container maxWidth="l">
+        main screen
+      </Container>
   )
 }
 

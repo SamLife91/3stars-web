@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
-import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
 
-import Main from './screens/Main'
+import ImportEdi from "./screens/import/ImportEdiFile";
+import Main from "./screens/Main";
+import MainLayout from "./layouts/Main";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 
 class App extends Component {
   render() {
+    const h = Header;
     return (
       <div className="App">
-        {/* <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Main} />
-          </Switch>
-        </Router>
+        <MainLayout
+          mainComponent={
+            <Router>
+              <Switch>
+                <Route exact path="/" component={Main} />
+                <Route path="/import" component={ImportEdi} />
+              </Switch>
+            </Router>
+          }
+          headerComponent={<Header />}
+          sidebarComponent={<Sidebar />}
+        />
       </div>
     );
   }
