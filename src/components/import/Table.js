@@ -22,194 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function createData(
-  level,
-  itemType,
-  beneficiary,
-  payer,
-  docType,
-  uom,
-  qty,
-  unitPrice,
-  payTerms,
-  unitPricee,
-  currency,
-  ppcc,
-  amount,
-  payments,
-  totalInvoice,
-  qtyTotal,
-  oppositeInv,
-  oppositeInvQty,
-  source,
-  cup,
-  goodD
-) {
-  return {
-    level,
-    itemType,
-    beneficiary,
-    payer,
-    docType,
-    uom,
-    qty,
-    unitPrice,
-    payTerms,
-    unitPricee,
-    currency,
-    ppcc,
-    amount,
-    payments,
-    totalInvoice,
-    qtyTotal,
-    oppositeInv,
-    oppositeInvQty,
-    source,
-    cup,
-    goodD
-  }
-}
-const headers = [
-  'Level',
-  'Item Type',
-  'Beneficiary',
-  'Payer',
-  'Doc Type',
-  'UOM',
-  'Qty.',
-  'Unit Price',
-  'Pay terms',
-  'Unit Price-',
-  'Currency',
-  'PP_CC',
-  'Amount',
-  'Payments',
-  'Total Invoice',
-  'QTY Total',
-  'Opposite inv',
-  'Opposite inv.qty.',
-  'Source',
-  'CUP',
-  'Goods D'
-]
-const rows = [
-  createData(
-    'All',
-    'IPS/Security Tax',
-    'THREE STARS Ltd',
-    'THREE STARS Ltd',
-    'Invoice',
-    'SHIPMENT',
-    2.0,
-    15.0,
-    'NOT DEFINED',
-    '',
-    'EUR',
-    'CC',
-    30.0,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    'com.nbl.business....',
-    'Security'
-  ),
-  createData(
-    'All',
-    'IPS/Security Tax',
-    'THREE STARS Ltd',
-    'THREE STARS Ltd',
-    'Invoice',
-    'SHIPMENT',
-    2.0,
-    15.0,
-    'NOT DEFINED',
-    '',
-    'EUR',
-    'CC',
-    30.0,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    'com.nbl.business....',
-    'Security'
-  ),
-  createData(
-    'All',
-    'IPS/Security Tax',
-    'THREE STARS Ltd',
-    'THREE STARS Ltd',
-    'Invoice',
-    'SHIPMENT',
-    2.0,
-    15.0,
-    'NOT DEFINED',
-    '',
-    'EUR',
-    'CC',
-    30.0,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    'com.nbl.business....',
-    'Security'
-  ),
-  createData(
-    'All',
-    'IPS/Security Tax',
-    'THREE STARS Ltd',
-    'THREE STARS Ltd',
-    'Invoice',
-    'SHIPMENT',
-    2.0,
-    15.0,
-    'NOT DEFINED',
-    '',
-    'EUR',
-    'CC',
-    30.0,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    'com.nbl.business....',
-    'Security'
-  ),
-  createData(
-    'All',
-    'IPS/Security Tax',
-    'THREE STARS Ltd',
-    'THREE STARS Ltd',
-    'Invoice',
-    'SHIPMENT',
-    2.0,
-    15.0,
-    'NOT DEFINED',
-    '',
-    'EUR',
-    'CC',
-    30.0,
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    'com.nbl.business....',
-    'Security'
-  )
-]
-export default function DenseTable() {
+const DenseTable = props => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -217,7 +30,7 @@ export default function DenseTable() {
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
-              {headers.map(item => (
+              {props.headers.map(item => (
                 <TableCell align="right" key={item}>
                   {item}
                 </TableCell>
@@ -225,10 +38,10 @@ export default function DenseTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {props.rows.map(row => (
               <TableRow>
-                {Object.values(row).map(item => (
-                  <TableCell>{item}</TableCell>
+                {Object.values(row).map((item, index) => (
+                  <TableCell key={index}>{item}</TableCell>
                 ))}
               </TableRow>
             ))}
@@ -238,3 +51,4 @@ export default function DenseTable() {
     </div>
   )
 }
+export default DenseTable
