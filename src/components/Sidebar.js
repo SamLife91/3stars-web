@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect, Link } from "react";
+import { Route } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
@@ -13,6 +16,9 @@ import SendIcon from "@material-ui/icons/Send";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
+import CloudUpload from "@material-ui/icons/CloudUpload";
+
+import { UIcontext, UiProvider, UiConsumer } from "../context/UIcontext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,10 +32,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NestedList() {
+const NestedList = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-
   function handleClick() {
     setOpen(!open);
   }
@@ -46,18 +51,19 @@ export default function NestedList() {
         <ListItem>3 stars admin</ListItem>
         <Divider />
       </div>
-      <ListItem button>
+      <ListItem button to={"/import"}>
         <ListItemIcon>
-          <SendIcon />
+          {/* <SendIcon /> */}
+          <CloudUpload />
         </ListItemIcon>
-        <ListItemText primary="Sent mail" />
+        <ListItemText primary="Import" />
       </ListItem>
-      <ListItem button>
+      {/* <ListItem button>
         <ListItemIcon>
           <DraftsIcon />
         </ListItemIcon>
         <ListItemText primary="Drafts" />
-      </ListItem>
+      </ListItem> */}
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
@@ -77,4 +83,5 @@ export default function NestedList() {
       </Collapse>
     </List>
   );
-}
+};
+export default NestedList;

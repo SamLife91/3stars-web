@@ -39,11 +39,12 @@ function getStepContent(step) {
   }
 }
 
-const ImportEdifile = () => {
+const ImportEdifile = props => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
+  console.log(props);
 
   function handleNext() {
     let newSkipped = skipped;

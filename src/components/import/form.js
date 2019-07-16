@@ -64,7 +64,8 @@ const ImportForm = () => {
     <form className={classes.container} noValidate autoComplete="off">
       <div
         style={{
-          margin: 10
+          margin: 5,
+          display: "flex"
         }}
       >
         <TextField
@@ -72,7 +73,8 @@ const ImportForm = () => {
           id="DealType"
           label="Deal-type"
           placeholder="Deal Type"
-          fullWidth
+          // fullWidth
+          style={{ flex: 1 }}
           margin="normal"
           InputLabelProps={{
             shrink: true
@@ -84,7 +86,8 @@ const ImportForm = () => {
           id="BookingN"
           label="Booking No:"
           placeholder="Booking number"
-          fullWidth
+          // fullWidth
+          style={{ flex: 1 }}
           margin="normal"
           InputLabelProps={{
             shrink: true
@@ -96,7 +99,8 @@ const ImportForm = () => {
           id="FreightTerms"
           label="Freight Terms"
           placeholder="Paid, Prepaid"
-          fullWidth
+          // fullWidth
+          style={{ flex: 1 }}
           margin="normal"
           InputLabelProps={{
             shrink: true
