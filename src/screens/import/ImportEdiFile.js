@@ -16,7 +16,7 @@ import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(1, 2.5),
     margin: theme.spacing(5, 0)
   }
 }));
@@ -28,7 +28,8 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Dropzone />;
+      // return <Dropzone />;
+      return <ReviewEdiFile />;
     case 1:
       return <ReviewEdiFile />;
 
@@ -62,21 +63,23 @@ const ImportEdifile = props => {
   }
 
   return (
-    <Container maxWidth="lg">
-      <Paper className={classes.root}>
-        <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}> {label} </StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-      </Paper>
-      <Paper className={classes.root}>
+    <Container maxWidth="100">
+      <Stepper
+        activeStep={activeStep}
+        alternativeLabel
+        className={classes.root}
+      >
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}> {label} </StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      <Paper className={classes.root} elevation={10}>
         <div>
           {activeStep === steps.length ? (
             <div>

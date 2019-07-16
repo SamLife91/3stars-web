@@ -11,6 +11,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+// import Boxider from "@material-ui/core/Divider";
 import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     flex: 1
   },
   dense: {
-    marginTop: 19
+    marginTop: 15
   },
   menu: {
     width: 200
@@ -36,7 +38,8 @@ const useStyles = makeStyles(theme => ({
   },
   row: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    wrap: "flex-wrap"
   }
 }));
 
@@ -62,31 +65,23 @@ const ImportForm = () => {
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
-      <div
-        style={{
-          margin: 5,
-          display: "flex"
-        }}
-      >
+      <Box className={classes.row}>
         <TextField
           className={classes.textField}
           id="DealType"
           label="Deal-type"
           placeholder="Deal Type"
-          // fullWidth
           style={{ flex: 1 }}
           margin="normal"
           InputLabelProps={{
             shrink: true
           }}
         />
-
         <TextField
           className={classes.textField}
           id="BookingN"
           label="Booking No:"
           placeholder="Booking number"
-          // fullWidth
           style={{ flex: 1 }}
           margin="normal"
           InputLabelProps={{
@@ -99,193 +94,166 @@ const ImportForm = () => {
           id="FreightTerms"
           label="Freight Terms"
           placeholder="Paid, Prepaid"
-          // fullWidth
           style={{ flex: 1 }}
           margin="normal"
           InputLabelProps={{
             shrink: true
           }}
         />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap"
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            flexDirection: "column",
-            margin: 10
+      </Box>
+      <Box className={classes.row}>
+        <TextField
+          className={classes.textField}
+          id="standard-full-width"
+          label="Customer"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
           }}
-        >
-          <TextField
-            className={classes.textField}
-            id="standard-full-width"
-            label="Customer"
-            placeholder="Placeholder"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-            value={""}
-          />
-          <TextField
-            className={classes.textField}
-            id="standard-full-width"
-            label="Shipper"
-            placeholder="Placeholder"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-          <TextField
-            className={classes.textField}
-            id="standard-full-width"
-            label="Consignee"
-            placeholder="Placeholder"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-          <TextField
-            className={classes.textField}
-            id="standard-full-width"
-            label="Notify Party"
-            placeholder="Placeholder"
-            fullWidth
-            margin="normal"
-            InputLabelProps={{
-              shrink: true
-            }}
-            disabled
-          />
-        </div>
-        <div
-          style={{
-            flex: 2,
-            flexDirection: "column",
-            margin: 10
+          value={""}
+        />
+        <TextField
+          className={classes.textField}
+          id="standard-full-width"
+          label="Shipper"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
           }}
-        >
-          <div className={classes.row}>
-            <TextField
-              className={classes.textField}
-              id="standard-full-width"
-              label="POL"
-              placeholder="Placeholder"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
+        />
+        <TextField
+          className={classes.textField}
+          id="standard-full-width"
+          label="Consignee"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
+        <TextField
+          className={classes.textField}
+          id="standard-full-width"
+          label="Notify Party"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+          disabled
+        />
+      </Box>
+      <Box className={classes.row}>
+        <TextField
+          className={classes.textField}
+          id="standard-full-width"
+          label="POL"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
 
-            <TextField
-              id="TD"
-              label="TD"
-              type="date"
-              defaultValue="2017-05-24"
-              margin="normal"
-              className={classes.textField}
-              fullWidth
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </div>
+        <TextField
+          id="TD"
+          label="TD"
+          type="date"
+          defaultValue="2017-05-24"
+          margin="normal"
+          className={classes.textField}
+          fullWidth
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
 
-          <div className={classes.row}>
-            <TextField
-              className={classes.textField}
-              id="TransShipmentCountry"
-              label="Trans-Shipment"
-              placeholder="Country"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
+        <TextField
+          className={classes.textField}
+          id="TransShipmentCountry"
+          label="Trans-Shipment"
+          placeholder="Country"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
 
-            <TextField
-              className={classes.textField}
-              id="TransShipmentPort"
-              label="Trans-Shipment"
-              placeholder="Port"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </div>
+        <TextField
+          className={classes.textField}
+          id="TransShipmentPort"
+          label="Trans-Shipment"
+          placeholder="Port"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
+      </Box>
+      <Box className={classes.row}>
+        <TextField
+          className={classes.textField}
+          id="POD"
+          label="POD"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
 
-          <div className={classes.row}>
-            <TextField
-              className={classes.textField}
-              id="POD"
-              label="POD"
-              placeholder="Placeholder"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
+        <TextField
+          id="POD-PORT"
+          label="Port"
+          margin="normal"
+          className={classes.textField}
+          fullWidth
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
 
-            <TextField
-              id="POD-PORT"
-              label="Port"
-              margin="normal"
-              className={classes.textField}
-              fullWidth
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </div>
+        <TextField
+          className={classes.textField}
+          id="standard-full-width"
+          label="Label"
+          placeholder="Placeholder"
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
 
-          <div className={classes.row}>
-            <TextField
-              className={classes.textField}
-              id="standard-full-width"
-              label="Label"
-              placeholder="Placeholder"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-
-            <TextField
-              id="TD"
-              label="TD"
-              type="date"
-              defaultValue="2017-05-24"
-              margin="normal"
-              className={classes.textField}
-              fullWidth
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </div>
-        </div>
-      </div>
-      <div>
+        <TextField
+          id="TD"
+          label="TD"
+          type="date"
+          defaultValue="2017-05-24"
+          margin="normal"
+          className={classes.textField}
+          fullWidth
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
+      </Box>
+      <Box style={{ alignSelf: "flex-end", padding: "5px 10px" }}>
         <Button variant="contained" size="small" className={classes.button}>
           <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
           Save
         </Button>
-      </div>
+      </Box>
     </form>
   );
 };

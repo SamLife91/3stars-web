@@ -25,10 +25,18 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     maxWidth: 460,
     backgroundColor: theme.palette.background.paper,
-    boxShadow: "0 0 1px 1px grey"
+    boxShadow: "0 0 1px 1px grey",
+    position: "fixed"
   },
   nested: {
     paddingLeft: theme.spacing(4)
+  },
+  sidebar: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    display: "flex",
+    flexDirection: "column"
   }
 }));
 
@@ -41,6 +49,7 @@ const NestedList = props => {
 
   return (
     <List style={{ boxShadow: "0 0 3px 0px #c3c3c3", height: `${100}vh` }}>
+      {/* <List className={classes.sidebar} elevation={1}> */}
       <div
         style={{
           height: 54,
@@ -53,17 +62,10 @@ const NestedList = props => {
       </div>
       <ListItem button to={"/import"}>
         <ListItemIcon>
-          {/* <SendIcon /> */}
           <CloudUpload />
         </ListItemIcon>
         <ListItemText primary="Import" />
       </ListItem>
-      {/* <ListItem button>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Drafts" />
-      </ListItem> */}
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
