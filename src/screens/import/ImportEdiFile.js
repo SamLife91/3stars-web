@@ -63,7 +63,7 @@ const ImportEdifile = props => {
   }
 
   return (
-    <Container maxWidth="100">
+    <Container maxWidth={false}>
       <Stepper
         activeStep={activeStep}
         alternativeLabel
