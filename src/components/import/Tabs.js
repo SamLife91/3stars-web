@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
-import Table from '../../components/import/Table'
+import MUIDataTable from 'mui-datatables'
 
 function TabContainer(props) {
   return <Typography component="div">{props.children}</Typography>
@@ -31,433 +31,318 @@ export default function ScrollableTabsButtonAuto() {
   function handleChange(event, newValue) {
     setValue(newValue)
   }
-  function createDataCollectibles(
-    level,
-    itemType,
-    beneficiary,
-    payer,
-    docType,
-    uom,
-    qty,
-    unitPrice,
-    payTerms,
-    unitPricee,
-    currency,
-    ppcc,
-    amount,
-    payments,
-    totalInvoice,
-    qtyTotal,
-    oppositeInv,
-    oppositeInvQty,
-    source,
-    cup,
-    goodD
-  ) {
-    return {
-      level,
-      itemType,
-      beneficiary,
-      payer,
-      docType,
-      uom,
-      qty,
-      unitPrice,
-      payTerms,
-      unitPricee,
-      currency,
-      ppcc,
-      amount,
-      payments,
-      totalInvoice,
-      qtyTotal,
-      oppositeInv,
-      oppositeInvQty,
-      source,
-      cup,
-      goodD
+  const columnsCargo = [
+    {
+      name: 'transportUnit',
+      label: 'Transport Unit',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'sealNum',
+      label: 'Seal Num',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'containerType',
+      label: 'Container Type',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'pcg',
+      label: 'pcg',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'packagesType',
+      label: 'Packages Type',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'goodsDescription',
+      label: 'Goods Description',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'cargoGW',
+      label: 'Cargo GW',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'mbl',
+      label: 'mbl',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 't1',
+      label: 't1',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'imo',
+      label: 'imo',
+      options: {
+        filter: true,
+        sort: false
+      }
+    },
+    {
+      name: 'reefer',
+      label: 'Reefer',
+      options: {
+        filter: true,
+        sort: false
+      }
     }
-  }
-  function createDataCargo(
-    transportUnit,
-    sealNum,
-    containerType,
-    pcg,
-    packagesType,
-    goodsDescription,
-    cargoGW,
-    mbl,
-    t1,
-    imo,
-    reefer
-  ) {
-    return {
-      transportUnit,
-      sealNum,
-      containerType,
-      pcg,
-      packagesType,
-      goodsDescription,
-      cargoGW,
-      mbl,
-      t1,
-      imo,
-      reefer
+  ]
+  const columnsCollectibles = [
+    {
+      name: 'level',
+      label: 'Level',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'itemType',
+      label: 'Item Type',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'beneficiary',
+      label: 'Beneficiary',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'payer',
+      label: 'Payer',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'docType',
+      label: 'Doc Type',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'uom',
+      label: 'UOM',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'qty',
+      label: 'Qty.',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'unitPrice',
+      label: 'Unit Price',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'currency',
+      label: 'Currency',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'payTerms',
+      label: 'Pay terms',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'unitPricee',
+      label: 'Unit Price-',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'currency',
+      label: 'Currency',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'ppcc',
+      label: 'PP_CC',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'amount',
+      label: 'Amount',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'payments',
+      label: 'Payments',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'totalInvoice',
+      label: 'Total Invoice',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'qtyTotal',
+      label: 'QTY Total',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'oppositeInv',
+      label: 'Opposite inv',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'oppositeInvQty',
+      label: 'Opposite inv.qty.',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'source',
+      label: 'Source',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'cup',
+      label: 'CUP',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: 'goodD',
+      label: 'Goods D',
+      options: {
+        filter: true,
+        sort: true
+      }
     }
+  ]
+  const dataCargo = [
+    {
+      transportUnit: 'UETU5326028',
+      sealNum: 'C0093621',
+      containerType: '40HC45G1',
+      pcg: '144.00',
+      packagesType: 'Package',
+      goodsDescription: 'HS CODE:271019 RFCU406',
+      cargoGW: '28 224.00',
+      mbl: 'COEU9000405750',
+      t1: '',
+      imo: '',
+      reefer: ''
+    }
+  ]
+  const dataCollectibles = [
+    {
+      level: 'All',
+      itemType: 'IPS/Security Tax',
+      beneficiary: 'THREE STARS Ltd',
+      payer: 'THREE STARS Ltd',
+      docType: 'Invoice',
+      uom: 'SHIPMENT',
+      qty: '2.00',
+      unitPrice: '15.0',
+      payTerms: 'NOT DEFINED',
+      unitPricee: '',
+      currency: 'EUR',
+      ppcc: 'CC',
+      amount: '5.00',
+      payments: '',
+      totalInvoice: '',
+      qtyTotal: '',
+      oppositeInv: '',
+      oppositeInvQty: '',
+      source: '',
+      cup: 'com.nbl.business....',
+      goodD: 'Security'
+    }
+  ]
+  const options = {
+    filterType: 'checkbox',
+    responsive: 'scroll'
   }
-  const headersListCollectibles = [
-    'Level',
-    'Item Type',
-    'Beneficiary',
-    'Payer',
-    'Doc Type',
-    'UOM',
-    'Qty.',
-    'Unit Price',
-    'Pay terms',
-    'Unit Price-',
-    'Currency',
-    'PP_CC',
-    'Amount',
-    'Payments',
-    'Total Invoice',
-    'QTY Total',
-    'Opposite inv',
-    'Opposite inv.qty.',
-    'Source',
-    'CUP',
-    'Goods D'
-  ]
-  const rowsListCollectibles = [
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    )
-  ]
-
-  const headersListCargo = [
-    'Transport Unit',
-    'Seal number',
-    'Container type',
-    'Package',
-    'Packages type',
-    'Goods description',
-    'Cargo GW',
-    'MBL',
-    'T1',
-    'IMO',
-    'Reefer'
-  ]
-  const rowsListCargo = [
-    createDataCargo(
-      'UETU5326028',
-      'C0093621',
-      '40HC45G1',
-      '144.00',
-      'Package',
-      'HS CODE:271019 RFCU406',
-      '28 224.00',
-      'COEU9000405750',
-      '',
-      '',
-      ''
-    )
-  ]
-
-  const headersListPayables = [
-    'Level',
-    'Item Type',
-    'Beneficiary',
-    'Payer',
-    'Doc Type',
-    'UOM',
-    'Qty.',
-    'Unit Price',
-    'Pay terms',
-    'Unit Price-',
-    'Currency',
-    'PP_CC',
-    'Amount',
-    'Payments',
-    'Total Invoice',
-    'QTY Total',
-    'Opposite inv',
-    'Opposite inv.qty.',
-    'Source',
-    'CUP',
-    'Goods D'
-  ]
-  const rowsListPayables = [
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    ),
-    createDataCollectibles(
-      'All',
-      'IPS/Security Tax',
-      'THREE STARS Ltd',
-      'THREE STARS Ltd',
-      'Invoice',
-      'SHIPMENT',
-      2.0,
-      15.0,
-      'NOT DEFINED',
-      '',
-      'EUR',
-      'CC',
-      30.0,
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      'com.nbl.business....',
-      'Security'
-    )
-  ]
-
-  const headersListAll = [
-    'Transport Unit',
-    'Seal number',
-    'Container type',
-    'Package',
-    'Packages type',
-    'Goods description',
-    'Cargo GW',
-    'MBL',
-    'T1',
-    'IMO',
-    'Reefer'
-  ]
-  const rowsListAll = [
-    createDataCargo(
-      'UETU5326028',
-      'C0093621',
-      '40HC45G1',
-      '144.00',
-      'Package',
-      'HS CODE:271019 RFCU406',
-      '28 224.00',
-      'COEU9000405750',
-      '',
-      '',
-      ''
-    )
-  ]
-
-  const [headersCollectibles, setHeadersCollectibles] = useState(
-    headersListCollectibles
-  )
-  const [rowsCollectibles, setRowsCollectibles] = useState(rowsListCollectibles)
-
-  const [headersCargo, setHeadersCargo] = useState(headersListCargo)
-  const [rowsCargo, setRowsCargo] = useState(rowsListCargo)
-
-  const [headersPayables, setHeadersPayables] = useState(headersListPayables)
-  const [rowsPayables, setRowPayables] = useState(rowsListPayables)
-
-  const [headersAll, setHeadersAll] = useState(headersListAll)
-  const [rowsAll, setRowsAll] = useState(rowsListAll)
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -477,22 +362,42 @@ export default function ScrollableTabsButtonAuto() {
       </AppBar>
       {value === 0 && (
         <TabContainer>
-          <Table headers={headersCollectibles} rows={rowsCollectibles} />
+          <MUIDataTable
+            title={'Cargo List'}
+            data={dataCargo}
+            columns={columnsCargo}
+            options={options}
+          />
         </TabContainer>
       )}
       {value === 1 && (
         <TabContainer>
-          <Table headers={headersCargo} rows={rowsCargo} />
+          <MUIDataTable
+            title={'Collectibles List'}
+            data={dataCollectibles}
+            columns={columnsCollectibles}
+            options={options}
+          />
         </TabContainer>
       )}
       {value === 2 && (
         <TabContainer>
-          <Table headers={headersPayables} rows={rowsPayables} />
+          <MUIDataTable
+            title={'Payables List'}
+            data={dataCargo}
+            columns={columnsCargo}
+            options={options}
+          />
         </TabContainer>
       )}
       {value === 3 && (
         <TabContainer>
-          <Table headers={headersAll} rows={rowsAll} />
+          <MUIDataTable
+            title={'All List'}
+            data={dataCollectibles}
+            columns={columnsCollectibles}
+            options={options}
+          />
         </TabContainer>
       )}
     </div>
