@@ -34,7 +34,6 @@ function getStepContent(step) {
       return (
         <div>
           <ReviewEdiFile />
-          <Divider />
           <Tabs />
         </div>
       )
@@ -46,20 +45,12 @@ function getStepContent(step) {
   }
 }
 
-<<<<<<< HEAD
-const ImportEdifile = () => {
+const ImportEdifile = props => {
   const classes = useStyles()
   const [activeStep, setActiveStep] = React.useState(0)
   const [skipped, setSkipped] = React.useState(new Set())
   const steps = getSteps()
-=======
-const ImportEdifile = props => {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
-  const steps = getSteps();
-  console.log(props);
->>>>>>> 25d952ce3a01726fe52db48f9a7283553360afda
+  console.log(props)
 
   function handleNext() {
     let newSkipped = skipped

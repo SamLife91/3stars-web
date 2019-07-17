@@ -8,11 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import Table from '../../components/import/Table'
 
 function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  )
+  return <Typography component="div">{props.children}</Typography>
 }
 
 TabContainer.propTypes = {
@@ -22,7 +18,8 @@ TabContainer.propTypes = {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    width: '100%',
+    margin: '40px 0px',
+    padding: '24px 26px',
     backgroundColor: theme.palette.background.paper
   }
 }))

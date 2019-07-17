@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(2)
   },
   table: {
-    minWidth: 650
+    minWidth: 340
   }
 }))
 
@@ -26,28 +27,30 @@ const DenseTable = props => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Table className={classes.table} size="small">
-          <TableHead>
-            <TableRow>
-              {props.headers.map(item => (
-                <TableCell align="right" key={item}>
-                  {item}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.rows.map(row => (
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <Table className={classes.table} size="small">
+            <TableHead>
               <TableRow>
-                {Object.values(row).map((item, index) => (
-                  <TableCell key={index}>{item}</TableCell>
+                {props.headers.map(item => (
+                  <TableCell align="right" key={item}>
+                    {item}
+                  </TableCell>
                 ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+            </TableHead>
+            <TableBody>
+              {props.rows.map((row, index) => (
+                <TableRow key={index}>
+                  {Object.values(row).map((item, index) => (
+                    <TableCell key={index}>{item}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
+      </Grid>
     </div>
   )
 }
