@@ -14,6 +14,8 @@ import ReviewEdiFile from "../../components/import/form";
 
 import Divider from "@material-ui/core/Divider";
 
+import { ImportProvider } from "../../context/TDImportContext";
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(1, 2.5),
@@ -63,58 +65,60 @@ const ImportEdifile = props => {
   }
 
   return (
-    <Container maxWidth={false}>
-      <Stepper
-        activeStep={activeStep}
-        alternativeLabel
-        className={classes.root}
-      >
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}> {label} </StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <Paper className={classes.root} elevation={10}>
-        <div>
-          {activeStep === steps.length ? (
-            <div>
-              <Typography className={classes.instructions}>
-                All steps completed - you & apos; re finished
-              </Typography>
-              <Button onClick={handleReset} className={classes.button}>
-                Reset
-              </Button>
-            </div>
-          ) : (
-            <div>
-              {getStepContent(activeStep)}
+    <ImportProvider>
+      <Container maxWidth={false}>
+        <Stepper
+          activeStep={activeStep}
+          alternativeLabel
+          className={classes.root}
+        >
+          {steps.map((label, index) => {
+            const stepProps = {};
+            const labelProps = {};
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}> {label} </StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <Paper className={classes.root} elevation={10}>
+          <div>
+            {activeStep === steps.length ? (
               <div>
-                <Button
-                  disabled={activeStep <= 1}
-                  onClick={handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                <Typography className={classes.instructions}>
+                  All steps completed - you & apos; re finished
+                </Typography>
+                <Button onClick={handleReset} className={classes.button}>
+                  Reset
                 </Button>
               </div>
-            </div>
-          )}
-        </div>
-      </Paper>
-    </Container>
+            ) : (
+              <div>
+                {getStepContent(activeStep)}
+                <div>
+                  <Button
+                    disabled={activeStep <= 1}
+                    onClick={handleBack}
+                    className={classes.button}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+        </Paper>
+      </Container>
+    </ImportProvider>
   );
 };
 

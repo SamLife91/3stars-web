@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState, setState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -14,6 +14,8 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 // import Boxider from "@material-ui/core/Divider";
 import SaveIcon from "@material-ui/icons/Save";
+import { ImportContext } from "../../context/TDImportContext";
+import DealNavigator from "../../components/import/DealNavigator";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -45,216 +47,286 @@ const useStyles = makeStyles(theme => ({
 
 const ImportForm = () => {
   const classes = useStyles();
+
+  const context = useContext(ImportContext);
+  const { deals, index, row, update } = context;
+  // console.log(deals);
+  console.log("----");
+  console.log(index, row);
+  console.log("----");
   const [values, setValues] = React.useState({
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR"
+    type: "",
+    booking: "",
+    terms: "",
+    customer: "",
+    shipper: "",
+    consignee: "",
+    notifyparty: "",
+    pol: "",
+    pod: "",
+    td: "",
+    transshipment: "",
+    port: "",
+    pod: ""
   });
 
   useEffect(() => {
     console.log("mounted");
-  }, []);
+    console.log(values);
+    resetValues(values);
+  }, [index]);
 
   const handleChange = name => event => {
+    console.log(event.target.value);
     setValues({
       ...values,
       [name]: event.target.value
     });
   };
-
+  const resetValues = values => {
+    setValues({
+      type: "",
+      booking: "",
+      terms: "",
+      customer: "",
+      shipper: "",
+      consignee: "",
+      notifyparty: "",
+      pol: "",
+      pod: "",
+      td: "",
+      transshipment: "",
+      port: ""
+    });
+  };
   return (
-    <form className={classes.container} noValidate autoComplete="off">
-      <Box className={classes.row}>
-        <TextField
-          className={classes.textField}
-          id="DealType"
-          label="Deal-type"
-          placeholder="Deal Type"
-          style={{ flex: 1 }}
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-        <TextField
-          className={classes.textField}
-          id="BookingN"
-          label="Booking No:"
-          placeholder="Booking number"
-          style={{ flex: 1 }}
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+    <React.Fragment>
+      <DealNavigator />
+      <form className={classes.container} noValidate autoComplete="off">
+        <Box className={classes.row}>
+          <TextField
+            value={values.type || ""}
+            onInput={handleChange("type")}
+            className={classes.textField}
+            id="DealType"
+            label="Deal-type"
+            placeholder={row.type}
+            style={{ flex: 1 }}
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={values.booking || ""}
+            onInput={handleChange("booking")}
+            className={classes.textField}
+            id="BookingN"
+            label="Booking No:"
+            placeholder={row.booking}
+            style={{ flex: 1 }}
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          className={classes.textField}
-          id="FreightTerms"
-          label="Freight Terms"
-          placeholder="Paid, Prepaid"
-          style={{ flex: 1 }}
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-      </Box>
-      <Box className={classes.row}>
-        <TextField
-          className={classes.textField}
-          id="standard-full-width"
-          label="Customer"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-          value={""}
-        />
-        <TextField
-          className={classes.textField}
-          id="standard-full-width"
-          label="Shipper"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-        <TextField
-          className={classes.textField}
-          id="standard-full-width"
-          label="Consignee"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-        <TextField
-          className={classes.textField}
-          id="standard-full-width"
-          label="Notify Party"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-          disabled
-        />
-      </Box>
-      <Box className={classes.row}>
-        <TextField
-          className={classes.textField}
-          id="standard-full-width"
-          label="POL"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+          <TextField
+            value={values.terms || ""}
+            onInput={handleChange("terms")}
+            className={classes.textField}
+            id="FreightTerms"
+            label="Freight Terms"
+            placeholder={row.terms}
+            style={{ flex: 1 }}
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+        </Box>
+        <Box className={classes.row}>
+          <TextField
+            value={values.customer || ""}
+            onInput={handleChange("customer")}
+            className={classes.textField}
+            id="standard-full-width"
+            label="Customer"
+            placeholder={row.customer}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={values.shipper || ""}
+            onInput={handleChange("shipper")}
+            className={classes.textField}
+            id="standard-full-width"
+            label="Shipper"
+            placeholder={row.shipper}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={values.consignee || ""}
+            onInput={handleChange("consignee")}
+            className={classes.textField}
+            id="standard-full-width"
+            label="Consignee"
+            placeholder={row.consignee}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={values.notifyparty || ""}
+            onInput={handleChange("notifyparty")}
+            className={classes.textField}
+            id="standard-full-width"
+            label="Notify Party"
+            placeholder={row.notifyparty}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+            disabled
+          />
+        </Box>
+        <Box className={classes.row}>
+          <TextField
+            value={values.pol || ""}
+            onInput={handleChange("pol")}
+            className={classes.textField}
+            id="standard-full-width"
+            label="POL"
+            placeholder={row.pol}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          id="TD"
-          label="TD"
-          type="date"
-          defaultValue="2017-05-24"
-          margin="normal"
-          className={classes.textField}
-          fullWidth
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+          <TextField
+            value={row.td || ""}
+            onInput={handleChange("td")}
+            id="TD"
+            label="TD"
+            type="date"
+            // defaultValue="2017-05-24"
+            margin="normal"
+            // placeholder={row.td}
+            className={classes.textField}
+            fullWidth
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          className={classes.textField}
-          id="TransShipmentCountry"
-          label="Trans-Shipment"
-          placeholder="Country"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+          <TextField
+            value={values.transshipment || ""}
+            onInput={handleChange("transshipment")}
+            className={classes.textField}
+            id="TransShipmentCountry"
+            label="Trans-Shipment"
+            placeholder="Country"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          className={classes.textField}
-          id="TransShipmentPort"
-          label="Trans-Shipment"
-          placeholder="Port"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-      </Box>
-      <Box className={classes.row}>
-        <TextField
-          className={classes.textField}
-          id="POD"
-          label="POD"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+          <TextField
+            value={values.port || ""}
+            onInput={handleChange("port")}
+            className={classes.textField}
+            id="TransShipmentPort"
+            label="Trans-Shipment"
+            placeholder="Port"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+        </Box>
+        <Box className={classes.row}>
+          <TextField
+            value={values.pod || ""}
+            onInput={handleChange("pod")}
+            className={classes.textField}
+            id="POD"
+            label="POD"
+            placeholder="Placeholder"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          id="POD-PORT"
-          label="Port"
-          margin="normal"
-          className={classes.textField}
-          fullWidth
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+          <TextField
+            value={values.port || ""}
+            onInput={handleChange("port")}
+            id="POD-PORT"
+            label="Port"
+            margin="normal"
+            className={classes.textField}
+            fullWidth
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          className={classes.textField}
-          id="standard-full-width"
-          label="Label"
-          placeholder="Placeholder"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
+          <TextField
+            className={classes.textField}
+            id="standard-full-width"
+            label="Label"
+            placeholder="Placeholder"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
 
-        <TextField
-          id="TD"
-          label="TD"
-          type="date"
-          defaultValue="2017-05-24"
-          margin="normal"
-          className={classes.textField}
-          fullWidth
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
-      </Box>
-      <Box style={{ alignSelf: "flex-end", padding: "5px 10px" }}>
-        <Button variant="contained" size="small" className={classes.button}>
-          <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
-          Save
-        </Button>
-      </Box>
-    </form>
+          <TextField
+            value={row.td || ""}
+            id="TD"
+            label="TD"
+            type="date"
+            // defaultValue="2017-05-24"
+            // defaultValue={row.td}
+            margin="normal"
+            className={classes.textField}
+            fullWidth
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+        </Box>
+        <Box style={{ alignSelf: "flex-end", padding: "5px 10px" }}>
+          <Button
+            variant="contained"
+            size="small"
+            className={classes.button}
+            onClick={() => update(index, values)}
+          >
+            <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+            Save
+          </Button>
+        </Box>
+      </form>
+    </React.Fragment>
   );
 };
 
