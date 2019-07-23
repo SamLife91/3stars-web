@@ -67,8 +67,10 @@ export const ImportProvider = props => {
       }
     ]
   });
-  const count = () => {
-    setState({ ...state, activeIndex: state.activeIndex + 1 });
+  const count = type => {
+    let curr = state.activeIndex;
+    type === "decrement" ? curr-- : curr++;
+    setState({ ...state, activeIndex: curr });
   };
 
   const updateRow = (index, args) => {

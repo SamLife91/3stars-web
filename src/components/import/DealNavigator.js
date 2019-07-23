@@ -2,31 +2,38 @@ import React, { useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { ImportContext } from "../../context/TDImportContext";
-import Icon from "@material-ui/core/Icon";
 
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from "@material-ui/icons/ArrowForwardIos";
-import IconButton from "@material-ui/core/IconButton";
 
 const DealNavigator = props => {
   const context = useContext(ImportContext);
   const { deals, index, count } = context;
+  const maxLimit = deals.length;
   console.log(index);
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
       <div>
-        <Button color="primary">
-          <ArrowBackIos />
+        <Button
+          color="primary"
+          disabled={index < 1}
+          onClick={() => count("decrement")}
+        >
+          <ArrowBackIos className={index < 1 ? "colorDisabled" : "primary"} />
           prev
         </Button>
-        {/* <ArrowBackios /> */}
-        {/* <Icon>{navigate}</Icon> */}
       </div>
       {index + 1} / {deals.length}
       <div>
-        <Button color="primary" onClick={count}>
+        <Button
+          color="primary"
+          disabled={index + 1 === maxLimit}
+          onClick={() => count("increment")}
+        >
           next
-          <ArrowForwardIos color="primary" />
+          <ArrowForwardIos
+            className={index + 1 === maxLimit ? "colorDisabled" : "primary"}
+          />
         </Button>
       </div>
     </Grid>
