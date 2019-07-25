@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
-import MUIDataTable from 'mui-datatables'
+import MaterialDatatable from 'material-datatable'
 
 function TabContainer(props) {
   return <Typography component="div">{props.children}</Typography>
@@ -33,88 +33,88 @@ export default function ScrollableTabsButtonAuto() {
   }
   const columnsCargo = [
     {
-      name: 'transportUnit',
-      label: 'Transport Unit',
+      field: 'transportUnit',
+      name: 'Transport Unit',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'sealNum',
-      label: 'Seal Num',
+      field: 'sealNum',
+      name: 'Seal Num',
       options: {
         filter: true,
         sort: false
       }
     },
     {
-      name: 'containerType',
-      label: 'Container Type',
+      field: 'containerType',
+      name: 'Container Type',
       options: {
         filter: true,
         sort: false
       }
     },
     {
+      field: 'pcg',
       name: 'pcg',
-      label: 'pcg',
       options: {
         filter: true,
         sort: false
       }
     },
     {
-      name: 'packagesType',
-      label: 'Packages Type',
+      field: 'packagesType',
+      name: 'Packages Type',
       options: {
         filter: true,
         sort: false
       }
     },
     {
-      name: 'goodsDescription',
-      label: 'Goods Description',
+      field: 'goodsDescription',
+      name: 'Goods Description',
       options: {
         filter: true,
         sort: false
       }
     },
     {
-      name: 'cargoGW',
-      label: 'Cargo GW',
+      field: 'cargoGW',
+      name: 'Cargo GW',
       options: {
         filter: true,
         sort: false
       }
     },
     {
+      field: 'mbl',
       name: 'mbl',
-      label: 'mbl',
       options: {
         filter: true,
         sort: false
       }
     },
     {
+      field: 't1',
       name: 't1',
-      label: 't1',
       options: {
         filter: true,
         sort: false
       }
     },
     {
+      field: 'imo',
       name: 'imo',
-      label: 'imo',
       options: {
         filter: true,
         sort: false
       }
     },
     {
-      name: 'reefer',
-      label: 'Reefer',
+      field: 'reefer',
+      name: 'Reefer',
       options: {
         filter: true,
         sort: false
@@ -123,176 +123,176 @@ export default function ScrollableTabsButtonAuto() {
   ]
   const columnsCollectibles = [
     {
-      name: 'level',
-      label: 'Level',
+      field: 'level',
+      name: 'Level',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'itemType',
-      label: 'Item Type',
+      field: 'itemType',
+      name: 'Item Type',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'beneficiary',
-      label: 'Beneficiary',
+      field: 'beneficiary',
+      name: 'Beneficiary',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'payer',
-      label: 'Payer',
+      field: 'payer',
+      name: 'Payer',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'docType',
-      label: 'Doc Type',
+      field: 'docType',
+      name: 'Doc Type',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'uom',
-      label: 'UOM',
+      field: 'uom',
+      name: 'UOM',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'qty',
-      label: 'Qty.',
+      field: 'qty',
+      name: 'Qty.',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'unitPrice',
-      label: 'Unit Price',
+      field: 'unitPrice',
+      name: 'Unit Price',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'currency',
-      label: 'Currency',
+      field: 'currency',
+      name: 'Currency',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'payTerms',
-      label: 'Pay terms',
+      field: 'payTerms',
+      name: 'Pay terms',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'unitPricee',
-      label: 'Unit Price-',
+      field: 'unitPricee',
+      name: 'Unit Price-',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'currency',
-      label: 'Currency',
+      field: 'currency',
+      name: 'Currency',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'ppcc',
-      label: 'PP_CC',
+      field: 'ppcc',
+      name: 'PP_CC',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'amount',
-      label: 'Amount',
+      field: 'amount',
+      name: 'Amount',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'payments',
-      label: 'Payments',
+      field: 'payments',
+      name: 'Payments',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'totalInvoice',
-      label: 'Total Invoice',
+      field: 'totalInvoice',
+      name: 'Total Invoice',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'qtyTotal',
-      label: 'QTY Total',
+      field: 'qtyTotal',
+      name: 'QTY Total',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'oppositeInv',
-      label: 'Opposite inv',
+      field: 'oppositeInv',
+      name: 'Opposite inv',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'oppositeInvQty',
-      label: 'Opposite inv.qty.',
+      field: 'oppositeInvQty',
+      name: 'Opposite inv.qty.',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'source',
-      label: 'Source',
+      field: 'source',
+      name: 'Source',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'cup',
-      label: 'CUP',
+      field: 'cup',
+      name: 'CUP',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      name: 'goodD',
-      label: 'Goods D',
+      field: 'goodD',
+      name: 'Goods D',
       options: {
         filter: true,
         sort: true
@@ -362,7 +362,7 @@ export default function ScrollableTabsButtonAuto() {
       </AppBar>
       {value === 0 && (
         <TabContainer>
-          <MUIDataTable
+          <MaterialDatatable
             title={'Cargo List'}
             data={dataCargo}
             columns={columnsCargo}
@@ -372,7 +372,7 @@ export default function ScrollableTabsButtonAuto() {
       )}
       {value === 1 && (
         <TabContainer>
-          <MUIDataTable
+          <MaterialDatatable
             title={'Collectibles List'}
             data={dataCollectibles}
             columns={columnsCollectibles}
@@ -382,7 +382,7 @@ export default function ScrollableTabsButtonAuto() {
       )}
       {value === 2 && (
         <TabContainer>
-          <MUIDataTable
+          <MaterialDatatable
             title={'Payables List'}
             data={dataCargo}
             columns={columnsCargo}
@@ -392,7 +392,7 @@ export default function ScrollableTabsButtonAuto() {
       )}
       {value === 3 && (
         <TabContainer>
-          <MUIDataTable
+          <MaterialDatatable
             title={'All List'}
             data={dataCollectibles}
             columns={columnsCollectibles}

@@ -4686,6 +4686,34 @@ marked@^0.6.2:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.3.tgz#79babad78af638ba4d522a9e715cdfdd2429e946"
   integrity sha512-Fqa7eq+UaxfMriqzYLayfqAE40WN03jf+zHjT18/uXNuzjq3TY0XTbrAoPeqSJrAmPz11VuUA+kBPYOhHt9oOQ==
 
+material-datatable@^0.1.2:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/material-datatable/-/material-datatable-0.1.9.tgz#0040823205eb4a66112a9af472482959497a1962"
+  integrity sha512-VqQ3hr2RTa+Wk+ZvLps+FzBcaV/m7wG+hfwBKa7IPBgUvSRPeL3oDJ54ch7cvm+ey2ryB+XAZCQ/cQ1CQAe+ww==
+  dependencies:
+    classnames "^2.2.5"
+    lodash.clonedeep "^4.5.0"
+    lodash.get "^4.4.2"
+    lodash.memoize "^4.1.2"
+    lodash.merge "^4.6.0"
+    material-datatable "^0.1.2"
+    prop-types "^15.6.0"
+    react-to-print "^1.0.10"
+
+material-datatable@^0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/material-datatable/-/material-datatable-0.3.9.tgz#4452b6901f5f6f24a8446e9de0de91fc790369cb"
+  integrity sha512-XYDq9ZkhsJbgDzCkhvNDXmPW61+nTLFTHtKSece0stE5QcP05MY+jGgWwkAEAcc/oXCb34gX7x5ocUWZWCACIA==
+  dependencies:
+    classnames "^2.2.5"
+    lodash.clonedeep "^4.5.0"
+    lodash.get "^4.4.2"
+    lodash.memoize "^4.1.2"
+    lodash.merge "^4.6.0"
+    material-datatable "^0.1.2"
+    prop-types "^15.6.0"
+    react-to-print "^1.0.10"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -6128,6 +6156,14 @@ react-scripts@0.9.x:
   optionalDependencies:
     fsevents "1.0.17"
 
+react-to-print@^1.0.10:
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-1.0.21.tgz#f6713c5c0ac06dc8c079937e4b7cecd6dbc8d630"
+  integrity sha512-fKUSFe7ra2GbtKCNw50J9ksq+iblOxvUvYYFkxvG/EaAxpM3tcCdyBnBAP6fwYf6+MlBrYw6AAqu71+dHOVrJQ==
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.2.0"
+
 react-to-print@^2.0.0-alpha.7:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.1.3.tgz#a3ae5f3a5b2f00447a97db7c804cdb51733b9601"
@@ -6145,7 +6181,7 @@ react-transition-group@^4.0.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^16.8.6:
+react@^16.2.0, react@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
