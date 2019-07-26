@@ -50,10 +50,6 @@ const ImportForm = () => {
 
   const context = useContext(ImportContext);
   const { deals, index, row, update } = context;
-  // console.log(deals);
-  console.log("----");
-  console.log(index, row);
-  console.log("----");
   const [values, setValues] = React.useState({
     type: "",
     booking: "",

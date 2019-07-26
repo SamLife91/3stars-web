@@ -30,8 +30,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      // return <Dropzone />;
-      return <ReviewEdiFile />;
+      return <Dropzone />;
     case 1:
       return <ReviewEdiFile />;
 
