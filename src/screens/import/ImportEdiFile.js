@@ -81,51 +81,52 @@ const ImportEdifile = props => {
             );
           })}
         </Stepper>
-        <Paper className={classes.root} elevation={10}>
-          <div>
-            {activeStep === steps.length ? (
-              <div>
-                <Typography className={classes.instructions}>
-                  All steps completed - you & apos; re finished
-                </Typography>
-                <Button onClick={handleReset} className={classes.button}>
-                  Reset
+        {/* <Paper className={classes.root} elevation={10}> */}
+        <div>
+          {activeStep === steps.length ? (
+            <div>
+              <Typography className={classes.instructions}>
+                All steps completed - you & apos; re finished
+              </Typography>
+              <Button onClick={handleReset} className={classes.button}>
+                Reset
+              </Button>
+            </div>
+          ) : (
+            <div>
+              {getStepContent(activeStep)}
+              <div
+                style={{
+                  marginTop: "300px",
+                  display: "flex",
+                  justifyContent: "space-between"
+                }}
+              >
+                <Button
+                  style={
+                    activeStep <= 1
+                      ? { display: "none" }
+                      : { display: " block" }
+                  }
+                  disabled={activeStep <= 1}
+                  onClick={handleBack}
+                  className={classes.button}
+                >
+                  Back
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNext}
+                  className={classes.button}
+                >
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
               </div>
-            ) : (
-              <div>
-                {getStepContent(activeStep)}
-                <div
-                  style={{
-                    position: "fixed",
-                    left: 0,
-                    bottom: 0,
-                    width: "100%",
-                    background: "white",
-                    display: "flex",
-                    justifyContent: "space-between"
-                  }}
-                >
-                  <Button
-                    disabled={activeStep <= 1}
-                    onClick={handleBack}
-                    className={classes.button}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
-        </Paper>
+            </div>
+          )}
+        </div>
+        {/* </Paper> */}
       </Container>
     </ImportProvider>
   );
