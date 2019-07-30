@@ -97,17 +97,12 @@ const ImportEdifile = props => {
               {getStepContent(activeStep)}
               <div
                 style={{
-                  marginTop: "300px",
                   display: "flex",
                   justifyContent: "space-between"
                 }}
               >
                 <Button
-                  style={
-                    activeStep <= 1
-                      ? { display: "none" }
-                      : { display: " block" }
-                  }
+                  // style={{ display: activeStep <= 1 ? "none" : "block" }}
                   disabled={activeStep <= 1}
                   onClick={handleBack}
                   className={classes.button}
