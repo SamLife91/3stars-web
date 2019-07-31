@@ -14,9 +14,11 @@ import ReviewEdiFile from "../../components/import/form";
 
 import Divider from "@material-ui/core/Divider";
 
+import { ImportProvider } from "../../context/TDImportContext";
+
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(1, 2.5),
     margin: theme.spacing(5, 0)
   }
 }));
@@ -62,9 +64,13 @@ const ImportEdifile = props => {
   }
 
   return (
-    <Container maxWidth="lg">
-      <Paper className={classes.root}>
-        <Stepper activeStep={activeStep} alternativeLabel>
+    <ImportProvider>
+      <Container maxWidth={false}>
+        <Stepper
+          activeStep={activeStep}
+          alternativeLabel
+          className={classes.root}
+        >
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
@@ -75,8 +81,7 @@ const ImportEdifile = props => {
             );
           })}
         </Stepper>
-      </Paper>
-      <Paper className={classes.root}>
+        {/* <Paper className={classes.root} elevation={10}> */}
         <div>
           {activeStep === steps.length ? (
             <div>
@@ -88,16 +93,15 @@ const ImportEdifile = props => {
               </Button>
             </div>
           ) : (
-            <div>
+            <Container>
               {getStepContent(activeStep)}
-              <div>
-                <Button
-                  disabled={activeStep <= 1}
-                  onClick={handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  marginTop: "1.5vh"
+                }}
+              >
                 <Button
                   variant="contained"
                   color="primary"
@@ -106,12 +110,20 @@ const ImportEdifile = props => {
                 >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
+                <Button
+                  disabled={activeStep <= 1}
+                  onClick={handleBack}
+                  className={classes.button}
+                >
+                  Back
+                </Button>
               </div>
-            </div>
+            </Container>
           )}
         </div>
-      </Paper>
-    </Container>
+        {/* </Paper> */}
+      </Container>
+    </ImportProvider>
   );
 };
 

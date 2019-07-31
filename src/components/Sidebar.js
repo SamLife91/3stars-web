@@ -249,26 +249,19 @@ const NestedList = props => {
     })
   }
   return (
-    <div className={classes.list}>
-      <Drawer
-        variant="persistent"
-        anchor="left"
-        open
-        classes={{ paper: classes.list }}
-      >
-        <div>
-          <List>
-            <ListItem key="menuHeading" divider disableGutters>
-              <ListItemText
-                className={classes.menuHeader}
-                primary="3 stars admin"
-              />
-            </ListItem>
-            {handler(data)}
-          </List>
-        </div>
-      </Drawer>
-    </div>
+    // <Drawer
+    //   variant="persistent"
+    //   anchor="left"
+    //   open
+    //   classes={{ paper: classes.list }}
+    // >
+    <List style={{ boxShadow: '0 0 3px 0px #c3c3c3', height: `${100}vh` }}>
+      <ListItem key="menuHeading" disableGutters>
+        <ListItemText className={classes.menuHeader} primary="3 stars admin" />
+      </ListItem>
+      {handler(data)}
+    </List>
+    // </Drawer>
   )
 }
 export default NestedList
