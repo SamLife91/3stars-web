@@ -52,9 +52,10 @@ const Dropzone = () => {
       <div
         {...getRootProps()}
         style={{
-          borderRadius: "50%",
+          borderRadius: 8,
           padding: 0,
           height: "250px",
+          height: "calc(100% - 250px)",
           display: "flex",
           flex: 1,
           flexDirection: "column",

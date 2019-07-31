@@ -10,7 +10,6 @@ const DealNavigator = props => {
   const context = useContext(ImportContext);
   const { deals, index, count } = context;
   const maxLimit = deals.length;
-  console.log(index);
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
       <div>
