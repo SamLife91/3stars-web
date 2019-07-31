@@ -42,7 +42,7 @@ const Dropzone = () => {
       elevation={12}
       style={{
         display: "flex",
-        width: "50%",
+        width: "100%",
         padding: "5px 10px",
         alignSelf: "center",
         margin: "0 auto"

@@ -93,22 +93,15 @@ const ImportEdifile = props => {
               </Button>
             </div>
           ) : (
-            <div>
+            <Container>
               {getStepContent(activeStep)}
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between"
+                  justifyContent: "flex-start",
+                  marginTop: "1.5vh"
                 }}
               >
-                <Button
-                  // style={{ display: activeStep <= 1 ? "none" : "block" }}
-                  disabled={activeStep <= 1}
-                  onClick={handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
                 <Button
                   variant="contained"
                   color="primary"
@@ -117,8 +110,15 @@ const ImportEdifile = props => {
                 >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
+                <Button
+                  disabled={activeStep <= 1}
+                  onClick={handleBack}
+                  className={classes.button}
+                >
+                  Back
+                </Button>
               </div>
-            </div>
+            </Container>
           )}
         </div>
         {/* </Paper> */}
