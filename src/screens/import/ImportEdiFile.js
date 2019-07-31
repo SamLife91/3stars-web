@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import Dropzone from "../../components/import/Dropzone";
 import ListEdiFile from "../../components/import/ListEdiFile";
 import ReviewEdiFile from "../../components/import/form";
+import EditDeal from "../../components/import/editDeal";
 
 import Divider from "@material-ui/core/Divider";
 
@@ -32,7 +33,8 @@ function getStepContent(step) {
     case 0:
       return <Dropzone />;
     case 1:
-      return <ReviewEdiFile />;
+      // return <ReviewEdiFile />;
+      return <EditDeal />;
 
     case 2:
       return <ListEdiFile />;
