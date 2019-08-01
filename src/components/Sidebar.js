@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, NavLink } from 'react-router-dom'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -47,38 +47,7 @@ import {
   LocalAtm,
   LocalOffer
 } from '@material-ui/icons/'
-import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline'
-// import Shuffle from '@material-ui/icons/Shuffle'
-// import LocalShipping from '@material-ui/icons/LocalShipping'
-// import MoreHoriz from '@material-ui/icons/MoreHoriz'
-// import SwapHorizontalCircle from '@material-ui/icons/SwapHorizontalCircle'
-// import Ballot from '@material-ui/icons/Ballot'
-// import Assignment from '@material-ui/icons/Assignment'
-// import Settings from '@material-ui/icons/Settings'
-// import VerticalAlignTop from '@material-ui/icons/VerticalAlignTop'
-// import Description from '@material-ui/icons/Description'
-// import Receipt from '@material-ui/icons/Receipt'
-// import Timeline from '@material-ui/icons/Timeline'
-// import EuroSymbol from '@material-ui/icons/EuroSymbol'
-// import TrendingUp from '@material-ui/icons/TrendingUp'
-// import Payment from '@material-ui/icons/Payment'
-// import Layers from '@material-ui/icons/Layers'
-// import LinearScale from '@material-ui/icons/LinearScale'
-// import Reply from '@material-ui/icons/Reply'
-// import StarRate from '@material-ui/icons/StarRate'
-// import AccountBox from '@material-ui/icons/AccountBox'
-// import PermIdentity from '@material-ui/icons/PermIdentity'
-// import SpeakerNotes from '@material-ui/icons/SpeakerNotes'
-// import PieChart from '@material-ui/icons/PieChart'
-// import SettingsApplications from '@material-ui/icons/SettingsApplications'
-// import DirectionsBoat from '@material-ui/icons/DirectionsBoat'
-// import Map from '@material-ui/icons/Map'
-// import Attachment from '@material-ui/icons/Attachment'
-// import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew'
-// import FileCopy from '@material-ui/icons/FileCopy'
-// import Place from '@material-ui/icons/Place'
-// import LocalAtm from '@material-ui/icons/LocalAtm'
-// import LocalOffer from '@material-ui/icons/LocalOffer'
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -88,7 +57,8 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed'
   },
   links: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'inherit'
   },
   menuHeader: {
     paddingLeft: '30px'
@@ -322,13 +292,15 @@ const NestedList = props => {
                 style={{ paddingLeft: '20%' }}
                 // style={{ display: 'flex', justifyContent: 'flex-end' }}
               >
-                <ListItemIcon>
-                  {/* <InboxIcon /> */}
-                  {subOption.icon || <InboxIcon />}
-                </ListItemIcon>
-                <Link to={subOption.url} className={classes.links}>
+                <ListItemIcon>{subOption.icon || <InboxIcon />}</ListItemIcon>
+                <NavLink
+                  to={subOption.url}
+                  exact
+                  className={classes.links}
+                  activeStyle={{ color: '#2196f3' }}
+                >
                   <ListItemText primary={subOption.name} />
-                </Link>
+                </NavLink>
               </ListItem>
             </List>
           </div>
@@ -338,11 +310,7 @@ const NestedList = props => {
         <div key={subOption.name}>
           <ListItem button onClick={() => handleClick(subOption.name)}>
             <Divider />
-            <ListItemIcon>
-              {subOption.icon || <InboxIcon />}
-              {/* {subOption.icon} */}
-              {/* {console.log(subOption)} */}
-            </ListItemIcon>
+            <ListItemIcon>{subOption.icon || <InboxIcon />}</ListItemIcon>
             <ListItemText primary={subOption.name} />
             {state[subOption.name] ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
