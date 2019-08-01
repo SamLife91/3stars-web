@@ -22,13 +22,13 @@ const editDeals = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <ExpansionPanel>
+      <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
+          <Typography className={classes.heading}>Form</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails
           style={{ display: "flex", flexDirection: "column" }}
@@ -42,25 +42,11 @@ const editDeals = () => {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Expansion Panel 2</Typography>
+          <Typography className={classes.heading}>table</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          <Typography>table</Typography>
         </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel disabled>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography className={classes.heading}>
-            Disabled Expansion Panel
-          </Typography>
-        </ExpansionPanelSummary>
       </ExpansionPanel>
     </div>
   );
