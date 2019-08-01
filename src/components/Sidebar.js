@@ -58,7 +58,9 @@ const useStyles = makeStyles(theme => ({
   },
   links: {
     textDecoration: 'none',
-    color: 'inherit'
+    color: 'inherit',
+    display: 'flex',
+    width: '100%'
   },
   menuHeader: {
     paddingLeft: '30px'
@@ -68,6 +70,7 @@ const useStyles = makeStyles(theme => ({
     padding: 'unset'
   },
   listItem: {
+    display: 'flex',
     '&:hover': {
       boxShadow: '#3f51b5 -4px 0px 0px inset',
       // backgroundColor: 'unset',
@@ -303,9 +306,15 @@ const NestedList = props => {
                 // style={{ display: 'flex', justifyContent: 'flex-end' }}
                 className={classes.listItem}
               >
-                <ListItemIcon>{subOption.icon || <InboxIcon />}</ListItemIcon>
                 <NavLink to={subOption.url} exact className={classes.links}>
-                  <ListItemText primary={subOption.name} />
+                  <div>
+                    <ListItemIcon>
+                      {subOption.icon || <InboxIcon />}
+                    </ListItemIcon>
+                  </div>
+                  <div>
+                    <ListItemText primary={subOption.name} />
+                  </div>
                 </NavLink>
               </ListItem>
             </List>
