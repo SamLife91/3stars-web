@@ -62,6 +62,17 @@ const useStyles = makeStyles(theme => ({
   },
   menuHeader: {
     paddingLeft: '30px'
+  },
+  list: {
+    backgroundColor: '#f1f1f1a3',
+    padding: 'unset'
+  },
+  listItem: {
+    '&:hover': {
+      boxShadow: '#3f51b5 -4px 0px 0px inset',
+      // backgroundColor: 'unset',
+      transition: '0.5s'
+    }
   }
 }))
 const data = [
@@ -285,20 +296,15 @@ const NestedList = props => {
       if (!subOption.children) {
         return (
           <div key={subOption.name}>
-            <List>
+            <List className={classes.list}>
               <ListItem
                 button
                 key={subOption.name}
-                style={{ paddingLeft: '20%' }}
                 // style={{ display: 'flex', justifyContent: 'flex-end' }}
+                className={classes.listItem}
               >
                 <ListItemIcon>{subOption.icon || <InboxIcon />}</ListItemIcon>
-                <NavLink
-                  to={subOption.url}
-                  exact
-                  className={classes.links}
-                  activeStyle={{ color: '#2196f3' }}
-                >
+                <NavLink to={subOption.url} exact className={classes.links}>
                   <ListItemText primary={subOption.name} />
                 </NavLink>
               </ListItem>
@@ -308,7 +314,11 @@ const NestedList = props => {
       }
       return (
         <div key={subOption.name}>
-          <ListItem button onClick={() => handleClick(subOption.name)}>
+          <ListItem
+            button
+            onClick={() => handleClick(subOption.name)}
+            // style={{ boxShadow: 'rgba(0, 0, 0, 0.17) -2px 0px 0px inset' }}
+          >
             <Divider />
             <ListItemIcon>{subOption.icon || <InboxIcon />}</ListItemIcon>
             <ListItemText primary={subOption.name} />
@@ -328,7 +338,7 @@ const NestedList = props => {
     //   open
     //   classes={{ paper: classes.list }}
     // >
-    <List style={{ boxShadow: '0 0 3px 0px #c3c3c3', height: `${100}vh` }}>
+    <List style={{ boxShadow: '0 0 3px 0px #c3c3c3' }}>
       <ListItem key="menuHeading" disableGutters>
         <ListItemText className={classes.menuHeader} primary="3 stars admin" />
       </ListItem>
