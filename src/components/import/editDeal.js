@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Tabs from '../../components/import/Tabs'
 
+import DealNavigator from "../../components/import/DealNavigator";
+
 import Form from "./form";
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +25,7 @@ const editDeals = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <DealNavigator />
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}

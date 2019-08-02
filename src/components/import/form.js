@@ -15,7 +15,6 @@ import Box from "@material-ui/core/Box";
 // import Boxider from "@material-ui/core/Divider";
 import SaveIcon from "@material-ui/icons/Save";
 import { ImportContext } from "../../context/TDImportContext";
-import DealNavigator from "../../components/import/DealNavigator";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -97,7 +96,6 @@ const ImportForm = () => {
   };
   return (
     <React.Fragment>
-      <DealNavigator />
       <form className={classes.container} noValidate autoComplete="off">
         <Box className={classes.row}>
           <TextField
