@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   col: {
     display: "flex",
-    flex: 1,
+    // flex: 1,
     flexDirection: "column"
   },
   hidden: {
@@ -31,13 +31,25 @@ const MainLayout = props => {
     <div className={styles.base}>
       <UIcontext.Consumer>
         {context => (
-          <div className={fw ? styles.hidden : styles.col} style={{ flex: 1 }}>
+          <div
+            className={fw ? styles.hidden : styles.col}
+            style={{
+              width: "20vw",
+              position: "fixed",
+              left: 0,
+              top: 0,
+              height: "100vh"
+            }}
+          >
             {props.sidebarComponent}
           </div>
         )}
       </UIcontext.Consumer>
 
-      <div className={styles.col} style={{ flex: 6 }}>
+      <div
+        className={styles.col}
+        style={{ width: fw ? "100vw" : "80vw", marginLeft: fw ? 0 : "20vw" }}
+      >
         <div>{props.headerComponent}</div>
         <div>{props.mainComponent}</div>
       </div>
