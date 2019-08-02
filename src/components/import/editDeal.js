@@ -5,6 +5,7 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Tabs from '../../components/import/Tabs'
 
 import Form from "./form";
 
@@ -36,18 +37,21 @@ const editDeals = () => {
           <Form />
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      <ExpansionPanel>
+      {/* <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>table</Typography>
+          <Typography className={classes.heading}>table</Typography> 
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>table</Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+          <Typography>
+            
+          </Typography>
+         </ExpansionPanelDetails>
+      </ExpansionPanel> */}
+      <Tabs />
     </div>
   );
 };
