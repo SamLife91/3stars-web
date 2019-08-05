@@ -57,12 +57,6 @@ const useStyles = makeStyles(theme => ({
     boxShadow: '0 0 1px 1px grey',
     position: 'fixed'
   },
-  links: {
-    textDecoration: 'none',
-    color: 'inherit',
-    display: 'flex',
-    width: '100%'
-  },
   menuHeader: {
     paddingLeft: '30px'
   },
@@ -72,10 +66,23 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     display: 'flex',
+    padding: 'unset',
     '&:hover': {
       boxShadow: '#3f51b5 -4px 0px 0px inset',
       // backgroundColor: 'unset',
       transition: '0.5s'
+    }
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
+    width: '100%',
+    padding: '8px 16px',
+    display: 'inherit',
+    alignItems: 'center',
+    '&.active': {
+      boxShadow: '#3f51b5 -4px 0px 0px inset',
+      backgroundColor: 'rgba(0, 0, 0, 0.08)'
     }
   },
   active: {
@@ -298,6 +305,9 @@ const NestedList = props => {
   const handleClick = item => {
     setState(state => ({ [item]: !state[item] }))
   }
+  // const getNavLinkClass = path => {
+  //   return location.pathname === path ? classes.active : ''
+  // }
   const handler = children => {
     return children.map(subOption => {
       if (!subOption.children) {
@@ -310,12 +320,7 @@ const NestedList = props => {
                 // style={{ display: 'flex', justifyContent: 'flex-end' }}
                 className={classes.listItem}
               >
-                <NavLink
-                  to={subOption.url}
-                  exact
-                  className={classes.links}
-                  activeClassName={classes.active}
-                >
+                <NavLink to={subOption.url} exact className={classes.link}>
                   <div>
                     <ListItemIcon>
                       {subOption.icon || <InboxIcon />}
@@ -357,7 +362,7 @@ const NestedList = props => {
     //   classes={{ paper: classes.list }}
     // >
     <List style={{ boxShadow: '0 0 3px 0px #c3c3c3', height: '100%' }}>
-      <ListItem key="menuHeading" disableGutters>
+      <ListItem key="menuHeading">
         <ListItemText className={classes.menuHeader} primary="3 stars admin" />
       </ListItem>
       {handler(data)}
