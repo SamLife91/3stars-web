@@ -1,5 +1,6 @@
 import React, { useContext, createContext, useReducer, useState } from "react";
 import mockdata from "../mock/import-data";
+// const mockdata = React.lazy(() => import("../mock/import-data"));
 export const ImportContext = React.createContext();
 console.log(mockdata);
 export const ImportProvider = props => {
@@ -68,6 +69,11 @@ export const ImportProvider = props => {
       }
     ]
   });
+  const uploadFile = () => {
+    // const data = mockdata.shipment_informations
+    state.deals = mockdata.shipment_informations;
+    setState({ ...state, ...state.deals });
+  };
   const count = type => {
     let curr = state.activeIndex;
     type === "decrement" ? curr-- : curr++;
@@ -102,7 +108,8 @@ export const ImportProvider = props => {
         deals: state.deals,
         count: count,
         row: state.deals[state.activeIndex],
-        update: updateRow
+        update: updateRow,
+        upload: uploadFile
       }}
     >
       {props.children}

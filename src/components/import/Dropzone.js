@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useContext } from "react";
 import { useDropzone } from "react-dropzone";
 import Paper from "@material-ui/core/Paper";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -6,14 +6,18 @@ import Divider from "@material-ui/core/Divider";
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
 
 import FolderSVG from "@material-ui/icons/Folder";
+import { ImportContext } from "../../context/TDImportContext";
 
 const Dropzone = () => {
   const [isUploaded, setUploaded] = useState(false);
+  const context = useContext(ImportContext);
+  const { upload } = context;
   const onDrop = useCallback(acceptedFile => {
     console.log(acceptedFile);
     setTimeout(() => {
       console.log("async");
       setUploaded({ isUploaded: true });
+      upload();
     }, 5000);
   }, []);
   const {
