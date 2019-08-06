@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useReducer, useState } from "react";
+import mockdata from "../mock/import-data";
 export const ImportContext = React.createContext();
-
+console.log(mockdata);
 export const ImportProvider = props => {
   const [state, setState] = useState({
     activeIndex: 0,
