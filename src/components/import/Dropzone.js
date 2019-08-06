@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useCallback, useState, useContext, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Paper from "@material-ui/core/Paper";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -34,6 +34,9 @@ const Dropzone = () => {
     noClick: false,
     noKeyboard: true
   });
+  useEffect(() => {
+    upload();
+  }, []);
   return (
     <Paper
       elevation={12}

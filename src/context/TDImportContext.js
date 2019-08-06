@@ -6,71 +6,9 @@ console.log(mockdata);
 export const ImportProvider = props => {
   const [state, setState] = useState({
     activeIndex: 0,
-    deals: [
-      {
-        type: "type1",
-        booking: "1234",
-        terms: "paid",
-        customer: "cust1",
-        shipper: "shipper1",
-        consignee: "const1",
-        notifyparty: "notp1",
-        pol: "pol1",
-        pod: "pod1",
-        td: "2017-05-24",
-        transshipment: "country",
-        port: "port1",
-        pod: "pod1"
-      },
-      {
-        type: "type2",
-        booking: "1234",
-        terms: "paid",
-        customer: "cust2",
-        shipper: "shipper2",
-        consignee: "cons2",
-        notifyparty: "notp2",
-        pol: "pol2",
-        pod: "pod2",
-        td: "2017-05-24",
-        transshipment: "country",
-        port: "port2",
-        pod: "pod2"
-      },
-      {
-        type: "type3",
-        booking: "1234",
-        terms: "paid",
-        customer: "cust3",
-        shipper: "shipper3",
-        consignee: "cons3",
-        notifyparty: "notp3",
-        pol: "pol3",
-        pod: "pod3",
-        td: "2017-05-24",
-        transshipment: "country",
-        port: "port3",
-        pod: "pod3"
-      },
-      {
-        type: "type4",
-        booking: "1234",
-        terms: "paid",
-        customer: "cust4",
-        shipper: "shipper4",
-        consignee: "cons4",
-        notifyparty: "notp4",
-        pol: "pol4",
-        pod: "pod4",
-        td: "2017-05-24",
-        transshipment: "country",
-        port: "port4",
-        pod: "pod4"
-      }
-    ]
+    deals: []
   });
   const uploadFile = () => {
-    // const data = mockdata.shipment_informations
     state.deals = mockdata.shipment_informations;
     setState({ ...state, ...state.deals });
   };
