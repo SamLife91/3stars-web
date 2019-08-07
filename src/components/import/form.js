@@ -1,26 +1,26 @@
-import React, { useEffect, useContext, useState, setState } from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
-import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FilledInput from "@material-ui/core/FilledInput";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
+import React, { useEffect, useContext, useState, setState } from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 // import Boxider from "@material-ui/core/Divider";
-import SaveIcon from "@material-ui/icons/Save";
-import { ImportContext } from "../../context/TDImportContext";
+import SaveIcon from '@material-ui/icons/Save';
+import { ImportContext } from '../../context/TDImportContext';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -35,12 +35,12 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: "100%"
+    minWidth: '100%'
   },
   row: {
-    display: "flex",
-    justifyContent: "space-between",
-    wrap: "flex-wrap"
+    display: 'flex',
+    justifyContent: 'space-between',
+    wrap: 'flex-wrap'
   }
 }));
 
@@ -49,24 +49,31 @@ const ImportForm = () => {
 
   const context = useContext(ImportContext);
   const { deals, index, row, update } = context;
+  console.log(row.first_record_of_b_1.bol_number);
   const [values, setValues] = React.useState({
-    type: "",
-    booking: "",
-    terms: "",
-    customer: "",
-    shipper: "",
-    consignee: "",
-    notifyparty: "",
-    pol: "",
-    pod: "",
-    td: "",
-    transshipment: "",
-    port: "",
-    pod: ""
+    type: '',
+    booking: '',
+    terms: '',
+    customer: '',
+    shipper: row.parties_concern.shipper_fields
+      .map(el => el.shipper_1)
+      .toString(),
+    consignee: '',
+    notifyparty: '',
+    pol: '',
+    pod: '',
+    td: '',
+    transshipment: '',
+    port: '',
+    pod: ''
   });
 
+  const shipp = row.parties_concern.shipper_fields
+    .map(el => el.shipper_1)
+    .toString();
+
   useEffect(() => {
-    console.log("mounted");
+    console.log('mounted');
     console.log(values);
     resetValues(values);
   }, [index]);
@@ -80,27 +87,27 @@ const ImportForm = () => {
   };
   const resetValues = values => {
     setValues({
-      type: "",
-      booking: "",
-      terms: "",
-      customer: "",
-      shipper: "",
-      consignee: "",
-      notifyparty: "",
-      pol: "",
-      pod: "",
-      td: "",
-      transshipment: "",
-      port: ""
+      type: '',
+      booking: '',
+      terms: '',
+      customer: '',
+      shipper: '',
+      consignee: '',
+      notifyparty: '',
+      pol: '',
+      pod: '',
+      td: '',
+      transshipment: '',
+      port: ''
     });
   };
   return (
     <React.Fragment>
       <form className={classes.container} noValidate autoComplete="off">
         <Box className={classes.row}>
-          <TextField
-            value={values.type || ""}
-            onInput={handleChange("type")}
+          {/* <TextField
+            value={values.type || ''}
+            onInput={handleChange('type')}
             className={classes.textField}
             id="DealType"
             label="Deal-type"
@@ -110,14 +117,14 @@ const ImportForm = () => {
             InputLabelProps={{
               shrink: true
             }}
-          />
+          /> */}
           <TextField
-            value={values.booking || ""}
-            onInput={handleChange("booking")}
+            value={values.booking || ''}
+            onInput={handleChange('booking')}
             className={classes.textField}
             id="BookingN"
             label="Booking No:"
-            placeholder={row.booking}
+            placeholder={row.first_record_of_b_1.bol_number}
             style={{ flex: 1 }}
             margin="normal"
             InputLabelProps={{
@@ -126,12 +133,12 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.terms || ""}
-            onInput={handleChange("terms")}
+            value={values.terms || ''}
+            onInput={handleChange('terms')}
             className={classes.textField}
             id="FreightTerms"
             label="Freight Terms"
-            placeholder={row.terms}
+            placeholder={row.first_record_of_b_1.bol_prepaid_or_collect}
             style={{ flex: 1 }}
             margin="normal"
             InputLabelProps={{
@@ -141,8 +148,8 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.customer || ""}
-            onInput={handleChange("customer")}
+            value={values.customer || ''}
+            onInput={handleChange('customer')}
             className={classes.textField}
             id="standard-full-width"
             label="Customer"
@@ -154,12 +161,12 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.shipper || ""}
-            onInput={handleChange("shipper")}
+            value={values.shipper || ''}
+            onInput={handleChange('shipper')}
             className={classes.textField}
             id="standard-full-width"
             label="Shipper"
-            placeholder={row.shipper}
+            placeholder={shipp}
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -167,12 +174,17 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.consignee || ""}
-            onInput={handleChange("consignee")}
+            value={values.consignee || ''}
+            onInput={handleChange('consignee')}
             className={classes.textField}
             id="standard-full-width"
             label="Consignee"
-            placeholder={row.consignee}
+            placeholder={
+              // row.parties_concern.consignee_fields[0].consignee_1 || ' '
+              row.parties_concern.consignee_fields.lenght
+                ? row.parties_concern.consignee_fields[0].consignee_1
+                : ' '
+            }
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -180,8 +192,8 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.notifyparty || ""}
-            onInput={handleChange("notifyparty")}
+            value={values.notifyparty || ''}
+            onInput={handleChange('notifyparty')}
             className={classes.textField}
             id="standard-full-width"
             label="Notify Party"
@@ -196,8 +208,8 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.pol || ""}
-            onInput={handleChange("pol")}
+            value={values.pol || ''}
+            onInput={handleChange('pol')}
             className={classes.textField}
             id="standard-full-width"
             label="POL"
@@ -210,8 +222,8 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={row.td || ""}
-            onInput={handleChange("td")}
+            value={row.td || ''}
+            onInput={handleChange('td')}
             id="TD"
             label="TD"
             type="date"
@@ -226,8 +238,8 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.transshipment || ""}
-            onInput={handleChange("transshipment")}
+            value={values.transshipment || ''}
+            onInput={handleChange('transshipment')}
             className={classes.textField}
             id="TransShipmentCountry"
             label="Trans-Shipment"
@@ -240,8 +252,8 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.port || ""}
-            onInput={handleChange("port")}
+            value={values.port || ''}
+            onInput={handleChange('port')}
             className={classes.textField}
             id="TransShipmentPort"
             label="Trans-Shipment"
@@ -255,12 +267,12 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.pod || ""}
-            onInput={handleChange("pod")}
+            value={values.pod || ''}
+            onInput={handleChange('pod')}
             className={classes.textField}
             id="POD"
             label="POD"
-            placeholder="Placeholder"
+            placeholder={row.port_place.bol_port_of_delivery_name}
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -269,8 +281,8 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.port || ""}
-            onInput={handleChange("port")}
+            value={values.port || ''}
+            onInput={handleChange('port')}
             id="POD-PORT"
             label="Port"
             margin="normal"
@@ -281,7 +293,7 @@ const ImportForm = () => {
             }}
           />
 
-          <TextField
+          {/* <TextField
             className={classes.textField}
             id="standard-full-width"
             label="Label"
@@ -291,10 +303,10 @@ const ImportForm = () => {
             InputLabelProps={{
               shrink: true
             }}
-          />
+          /> */}
 
           <TextField
-            value={row.td || ""}
+            value={row.td || ''}
             id="TD"
             label="TD"
             type="date"
@@ -308,7 +320,7 @@ const ImportForm = () => {
             }}
           />
         </Box>
-        <Box style={{ alignSelf: "flex-end", padding: "5px 10px" }}>
+        <Box style={{ alignSelf: 'flex-end', padding: '5px 10px' }}>
           <Button
             variant="contained"
             size="small"
