@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import MaterialDatatable from 'material-datatable'
+
+import { ImportContext } from '../../context/TDImportContext'
 
 function TabContainer(props) {
   return <Typography component="div">{props.children}</Typography>
@@ -27,205 +29,159 @@ const useStyles = makeStyles(theme => ({
 export default function ScrollableTabsButtonAuto() {
   const classes = useStyles()
   const [value, setValue] = React.useState(0)
-
+  const context = useContext(ImportContext)
+  const { row } = context
   function handleChange(event, newValue) {
     setValue(newValue)
   }
   const columnsCargo = [
     {
-      field: 'transportUnit',
-      name: 'Transport Unit',
+      field: 'cargo_sequence_number',
+      name: 'Cargo Sequence Number',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'sealNum',
-      name: 'Seal Num',
+      field: 'container_cargo_volume_m3',
+      name: 'Container cargo volume m3',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'containerType',
-      name: 'Container Type',
+      field: 'container_cargo_weight_kg',
+      name: 'Container cargo weight kg',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'pcg',
-      name: 'pcg',
+      field: 'container_cycfs_item',
+      name: 'Container cycfs item',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'packagesType',
-      name: 'Packages Type',
+      field: 'container_kind_of_packages',
+      name: 'Container kind of packages',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'goodsDescription',
-      name: 'Goods Description',
+      field: 'container_loading_status',
+      name: 'Container loading status',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'cargoGW',
-      name: 'Cargo GW',
+      field: 'container_loading_status_code',
+      name: 'Container loading status code',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'mbl',
-      name: 'mbl',
+      field: 'container_number',
+      name: 'Container number',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 't1',
-      name: 't1',
+      field: 'container_size_and_type_iso_code',
+      name: 'Container size and type iso code',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'imo',
-      name: 'imo',
+      field: 'container_tare_weight_kg',
+      name: 'Container tare weight kg',
       options: {
         filter: true,
-        sort: false
+        sort: true
       }
     },
     {
-      field: 'reefer',
-      name: 'Reefer',
+      field: 'is_container_short_shipped',
+      name: 'Is container short shipped',
       options: {
         filter: true,
-        sort: false
+        sort: true
+      }
+    },
+    {
+      field: 'is_dangerous_container',
+      name: 'Is dangerous container',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'is_shipper_owned_container',
+      name: 'Is shipper owned container',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'seal_number',
+      name: 'Seal number',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'stowage_location',
+      name: 'Stowage location',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'tag',
+      name: 'Tag',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'unknown',
+      name: 'unknown',
+      options: {
+        filter: true,
+        sort: true
       }
     }
   ]
-  const columnsCollectibles = [
-    {
-      field: 'level',
-      name: 'Level',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'itemType',
-      name: 'Item Type',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'beneficiary',
-      name: 'Beneficiary',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'payer',
-      name: 'Payer',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'docType',
-      name: 'Doc Type',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'uom',
-      name: 'UOM',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'qty',
-      name: 'Qty.',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'unitPrice',
-      name: 'Unit Price',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'currency',
-      name: 'Currency',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'payTerms',
-      name: 'Pay terms',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'unitPricee',
-      name: 'Unit Price-',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'currency',
-      name: 'Currency',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      field: 'ppcc',
-      name: 'PP_CC',
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
+  const dataCargo = row.cargo_descriptions.map((val, index, arr) => {
+    return val.cargo_in_containers[index]
+  })
+  const payablesData = row.freight_informations.filter(
+    item => item.prepaid_or_collect_code === 'P'
+  )
+  const collectiblesData = row.freight_informations.filter(
+    item => item.prepaid_or_collect_code === 'C'
+  )
+  const payablesAndCollectiblesColumns = [
     {
       field: 'amount',
       name: 'Amount',
@@ -235,110 +191,127 @@ export default function ScrollableTabsButtonAuto() {
       }
     },
     {
-      field: 'payments',
-      name: 'Payments',
+      field: 'currency',
+      name: 'Currency',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'totalInvoice',
-      name: 'Total Invoice',
+      field: 'equivalent_amount',
+      name: 'Equivalent Amount',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'qtyTotal',
-      name: 'QTY Total',
+      field: 'exchange_rate',
+      name: 'Exchange Rate',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'oppositeInv',
-      name: 'Opposite inv',
+      field: 'exchange_to_currency',
+      name: 'Exchange to currency',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'oppositeInvQty',
-      name: 'Opposite inv.qty.',
+      field: 'freight_charge_code',
+      name: 'Freight Charge Code',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'source',
-      name: 'Source',
+      field: 'freight_charge_remark',
+      name: 'Freight Charge Remark',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'cup',
-      name: 'CUP',
+      field: 'freight_unit_of_quantity',
+      name: 'Freight Unit of Quantity',
       options: {
         filter: true,
         sort: true
       }
     },
     {
-      field: 'goodD',
-      name: 'Goods D',
+      field: 'payable_at',
+      name: 'Rayable at',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'prepaid_or_collect',
+      name: 'Prepaid or Collect',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'prepaid_or_collect_code',
+      name: 'Prepaid or Collect Code',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'quantity',
+      name: 'Quantity',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'rate_of_freight_charge',
+      name: 'Rate of Freight Charge',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'sequence_number',
+      name: 'Sequence Number',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'tag',
+      name: 'Tag',
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      field: 'unknown',
+      name: 'unknown',
       options: {
         filter: true,
         sort: true
       }
     }
   ]
-  const dataCargo = [
-    {
-      transportUnit: 'UETU5326028',
-      sealNum: 'C0093621',
-      containerType: '40HC45G1',
-      pcg: '144.00',
-      packagesType: 'Package',
-      goodsDescription: 'HS CODE:271019 RFCU406',
-      cargoGW: '28 224.00',
-      mbl: 'COEU9000405750',
-      t1: '',
-      imo: '',
-      reefer: ''
-    }
-  ]
-  const dataCollectibles = [
-    {
-      level: 'All',
-      itemType: 'IPS/Security Tax',
-      beneficiary: 'THREE STARS Ltd',
-      payer: 'THREE STARS Ltd',
-      docType: 'Invoice',
-      uom: 'SHIPMENT',
-      qty: '2.00',
-      unitPrice: '15.0',
-      payTerms: 'NOT DEFINED',
-      unitPricee: '',
-      currency: 'EUR',
-      ppcc: 'CC',
-      amount: '5.00',
-      payments: '',
-      totalInvoice: '',
-      qtyTotal: '',
-      oppositeInv: '',
-      oppositeInvQty: '',
-      source: '',
-      cup: 'com.nbl.business....',
-      goodD: 'Security'
-    }
-  ]
+
   const options = {
     filterType: 'checkbox',
     responsive: 'scroll'
@@ -374,8 +347,8 @@ export default function ScrollableTabsButtonAuto() {
         <TabContainer>
           <MaterialDatatable
             title={'Collectibles List'}
-            data={dataCollectibles}
-            columns={columnsCollectibles}
+            data={collectiblesData}
+            columns={payablesAndCollectiblesColumns}
             options={options}
           />
         </TabContainer>
@@ -384,8 +357,8 @@ export default function ScrollableTabsButtonAuto() {
         <TabContainer>
           <MaterialDatatable
             title={'Payables List'}
-            data={dataCargo}
-            columns={columnsCargo}
+            data={payablesData}
+            columns={payablesAndCollectiblesColumns}
             options={options}
           />
         </TabContainer>
@@ -394,8 +367,8 @@ export default function ScrollableTabsButtonAuto() {
         <TabContainer>
           <MaterialDatatable
             title={'All List'}
-            data={dataCollectibles}
-            columns={columnsCollectibles}
+            data={collectiblesData}
+            columns={payablesAndCollectiblesColumns}
             options={options}
           />
         </TabContainer>
