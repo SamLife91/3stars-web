@@ -31,6 +31,7 @@ export default function ScrollableTabsButtonAuto() {
   const [value, setValue] = React.useState(0)
   const context = useContext(ImportContext)
   const { row } = context
+  console.log(row)
   function handleChange(event, newValue) {
     setValue(newValue)
   }
@@ -172,8 +173,16 @@ export default function ScrollableTabsButtonAuto() {
       }
     }
   ]
+
   const dataCargo = row.cargo_descriptions.map((val, index, arr) => {
-    return val.cargo_in_containers[index]
+    if (val.cargo_in_containers.length >= 1){
+      return val.cargo_in_containers.map((item, index, arr) => {
+        return item
+        })
+    }
+    else {
+      return console.log('val.cargo_in_containers = 0')
+      }
   })
   const payablesData = row.freight_informations.filter(
     item => item.prepaid_or_collect_code === 'P'
