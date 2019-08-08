@@ -1,5 +1,5 @@
-import React, { useContext, createContext, useReducer, useState } from "react";
-import mockdata from "../mock/import-data";
+import React, { useContext, createContext, useReducer, useState } from 'react';
+import mockdata from '../mock/import-data';
 // const mockdata = React.lazy(() => import("../mock/import-data"));
 export const ImportContext = React.createContext();
 console.log(mockdata);
@@ -8,20 +8,26 @@ export const ImportProvider = props => {
     activeIndex: 0,
     deals: []
   });
+  const [instruction, setInstruction] = useState({
+    ship: {}
+  });
   const uploadFile = () => {
     state.deals = mockdata.shipment_informations;
+    instruction.ship = mockdata.shipment_instruction;
+    console.log(instruction.ship);
     setState({ ...state, ...state.deals });
+    setInstruction({ ...instruction.ship });
   };
   const count = type => {
     let curr = state.activeIndex;
-    type === "decrement" ? curr-- : curr++;
+    type === 'decrement' ? curr-- : curr++;
     setState({ ...state, activeIndex: curr });
   };
 
   const updateRow = (index, args) => {
     const mergeInputRes = (value, field) => {
-      value === "" ? state.deals[index][field] : value;
-      if (value === "") {
+      value === '' ? state.deals[index][field] : value;
+      if (value === '') {
         return state.deals[index][field];
       } else {
         return value;
@@ -47,7 +53,8 @@ export const ImportProvider = props => {
         count: count,
         row: state.deals[state.activeIndex],
         update: updateRow,
-        upload: uploadFile
+        upload: uploadFile,
+        instruction: instruction
       }}
     >
       {props.children}

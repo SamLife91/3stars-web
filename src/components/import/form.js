@@ -48,16 +48,14 @@ const ImportForm = () => {
   const classes = useStyles();
 
   const context = useContext(ImportContext);
-  const { deals, index, row, update } = context;
+  const { deals, index, row, update, instruction } = context;
   console.log(row.first_record_of_b_1.bol_number);
   const [values, setValues] = React.useState({
     type: '',
     booking: '',
     terms: '',
     customer: '',
-    shipper: row.parties_concern.shipper_fields
-      .map(el => el.shipper_1)
-      .toString(),
+    shipper: '',
     consignee: '',
     notifyparty: '',
     pol: '',
@@ -68,10 +66,17 @@ const ImportForm = () => {
     pod: ''
   });
 
-  const shipp = row.parties_concern.shipper_fields
+  const shippmentLB = row.parties_concern.shipper_fields
     .map(el => el.shipper_1)
     .toString();
 
+  const consigneeLB = row.parties_concern.consignee_fields.map(el =>
+    Object.values(el).join()
+  );
+  const notifypartyLB = row.parties_concern.notify_party_fields.map(el =>
+    Object.values(el).join()
+  );
+  console.log(instruction);
   useEffect(() => {
     console.log('mounted');
     console.log(values);
@@ -145,8 +150,6 @@ const ImportForm = () => {
               shrink: true
             }}
           />
-        </Box>
-        <Box className={classes.row}>
           <TextField
             value={values.customer || ''}
             onInput={handleChange('customer')}
@@ -160,13 +163,15 @@ const ImportForm = () => {
               shrink: true
             }}
           />
+        </Box>
+        <Box className={classes.row}>
           <TextField
             value={values.shipper || ''}
             onInput={handleChange('shipper')}
             className={classes.textField}
             id="standard-full-width"
             label="Shipper"
-            placeholder={shipp}
+            placeholder={shippmentLB}
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -179,12 +184,7 @@ const ImportForm = () => {
             className={classes.textField}
             id="standard-full-width"
             label="Consignee"
-            placeholder={
-              // row.parties_concern.consignee_fields[0].consignee_1 || ' '
-              row.parties_concern.consignee_fields.lenght
-                ? row.parties_concern.consignee_fields[0].consignee_1
-                : ' '
-            }
+            placeholder={consigneeLB.toString()}
             fullWidth
             margin="normal"
             InputLabelProps={{
@@ -197,13 +197,13 @@ const ImportForm = () => {
             className={classes.textField}
             id="standard-full-width"
             label="Notify Party"
-            placeholder={row.notifyparty}
+            placeholder={notifypartyLB.toString()}
             fullWidth
             margin="normal"
             InputLabelProps={{
               shrink: true
             }}
-            disabled
+            // disabled
           />
         </Box>
         <Box className={classes.row}>
@@ -222,7 +222,7 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={row.td || ''}
+            value={instruction.arrival_date || ''}
             onInput={handleChange('td')}
             id="TD"
             label="TD"
@@ -287,6 +287,7 @@ const ImportForm = () => {
             label="Port"
             margin="normal"
             className={classes.textField}
+            placeholder={row.port_place.bol_port_of_discharge}
             fullWidth
             InputLabelProps={{
               shrink: true
@@ -306,14 +307,55 @@ const ImportForm = () => {
           /> */}
 
           <TextField
-            value={row.td || ''}
+            value={instruction.sailing_date || ''}
             id="TD"
             label="TD"
             type="date"
-            // defaultValue="2017-05-24"
+            // defaultValue={row.shipment_instruction.arrival_date}
             // defaultValue={row.td}
             margin="normal"
             className={classes.textField}
+            fullWidth
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+        </Box>
+        <Box className={classes.row}>
+          <TextField
+            value={values.port || ''}
+            onInput={handleChange('vessel')}
+            id="VESSEL-NAME"
+            label="Vessel name"
+            margin="normal"
+            className={classes.textField}
+            placeholder={instruction.vessel_name}
+            fullWidth
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={values.port || ''}
+            onInput={handleChange('vessel-code')}
+            id="VESSEL-CODE"
+            label="Code"
+            margin="normal"
+            className={classes.textField}
+            placeholder={instruction.vessel_code}
+            fullWidth
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <TextField
+            value={values.port || ''}
+            onInput={handleChange('voyage_number')}
+            id="VOYAGE-NUMBER"
+            label="Voyage Number"
+            margin="normal"
+            className={classes.textField}
+            placeholder={instruction.voyage_number}
             fullWidth
             InputLabelProps={{
               shrink: true
