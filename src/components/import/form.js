@@ -51,7 +51,7 @@ const ImportForm = () => {
   const { deals, index, row, update, instruction } = context;
   console.log(row.first_record_of_b_1.bol_number);
   const [values, setValues] = React.useState({
-    type: '',
+    type: row.first_record_of_b_1.bol_number,
     booking: '',
     terms: '',
     customer: '',
@@ -60,7 +60,8 @@ const ImportForm = () => {
     notifyparty: '',
     pol: '',
     pod: '',
-    td: '',
+    ad: '',
+    sd: '',
     transshipment: '',
     port: '',
     pod: ''
@@ -101,7 +102,8 @@ const ImportForm = () => {
       notifyparty: '',
       pol: '',
       pod: '',
-      td: '',
+      ad: '',
+      sd: '',
       transshipment: '',
       port: ''
     });
@@ -124,7 +126,7 @@ const ImportForm = () => {
             }}
           /> */}
           <TextField
-            value={values.booking || ''}
+            value={values.booking || row.first_record_of_b_1.bol_number}
             onInput={handleChange('booking')}
             className={classes.textField}
             id="BookingN"
@@ -138,7 +140,9 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.terms || ''}
+            value={
+              values.terms || row.first_record_of_b_1.bol_prepaid_or_collect
+            }
             onInput={handleChange('terms')}
             className={classes.textField}
             id="FreightTerms"
@@ -166,7 +170,7 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.shipper || ''}
+            value={values.shipper || shippmentLB}
             onInput={handleChange('shipper')}
             className={classes.textField}
             id="standard-full-width"
@@ -179,7 +183,7 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.consignee || ''}
+            value={values.consignee || consigneeLB.toString()}
             onInput={handleChange('consignee')}
             className={classes.textField}
             id="standard-full-width"
@@ -192,7 +196,7 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.notifyparty || ''}
+            value={values.notifyparty || notifypartyLB.toString()}
             onInput={handleChange('notifyparty')}
             className={classes.textField}
             id="standard-full-width"
@@ -208,7 +212,7 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.pol || ''}
+            value={values.pol || row.pol}
             onInput={handleChange('pol')}
             className={classes.textField}
             id="standard-full-width"
@@ -222,14 +226,14 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={instruction.arrival_date || ''}
-            onInput={handleChange('td')}
-            id="TD"
-            label="TD"
+            value={values.td || instruction.arrival_date}
+            onInput={handleChange('ad')}
+            id="ARRIVAL-DATE"
+            label="Arrival date"
             type="date"
-            // defaultValue="2017-05-24"
+            // defaultValue={instruction.arrival_date}
             margin="normal"
-            // placeholder={row.td}
+            // placeholder={instruction.arrival_date}
             className={classes.textField}
             fullWidth
             InputLabelProps={{
@@ -238,7 +242,7 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.transshipment || ''}
+            value={values.transshipment || 'GREECE'}
             onInput={handleChange('transshipment')}
             className={classes.textField}
             id="TransShipmentCountry"
@@ -252,7 +256,7 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.port || ''}
+            value={values.port || 'Piraeus'}
             onInput={handleChange('port')}
             className={classes.textField}
             id="TransShipmentPort"
@@ -267,7 +271,7 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.pod || ''}
+            value={values.pod || row.port_place.bol_port_of_delivery_name}
             onInput={handleChange('pod')}
             className={classes.textField}
             id="POD"
@@ -281,7 +285,7 @@ const ImportForm = () => {
           />
 
           <TextField
-            value={values.port || ''}
+            value={values.port || row.port_place.bol_port_of_discharge}
             onInput={handleChange('port')}
             id="POD-PORT"
             label="Port"
@@ -307,12 +311,10 @@ const ImportForm = () => {
           /> */}
 
           <TextField
-            value={instruction.sailing_date || ''}
-            id="TD"
-            label="TD"
+            value={values.sd || instruction.sailing_date}
+            id="SAIL-DATE"
+            label="Sail date"
             type="date"
-            // defaultValue={row.shipment_instruction.arrival_date}
-            // defaultValue={row.td}
             margin="normal"
             className={classes.textField}
             fullWidth
@@ -323,7 +325,7 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.port || ''}
+            value={values.port || instruction.vessel_name}
             onInput={handleChange('vessel')}
             id="VESSEL-NAME"
             label="Vessel name"
@@ -336,7 +338,7 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.port || ''}
+            value={values.port || instruction.vessel_code}
             onInput={handleChange('vessel-code')}
             id="VESSEL-CODE"
             label="Code"
@@ -349,7 +351,7 @@ const ImportForm = () => {
             }}
           />
           <TextField
-            value={values.port || ''}
+            value={values.port || instruction.voyage_number}
             onInput={handleChange('voyage_number')}
             id="VOYAGE-NUMBER"
             label="Voyage Number"
@@ -362,7 +364,7 @@ const ImportForm = () => {
             }}
           />
         </Box>
-        <Box style={{ alignSelf: 'flex-end', padding: '5px 10px' }}>
+        <Box style={{ alignSelf: 'flex-start', padding: '5px 10px' }}>
           <Button
             variant="contained"
             size="small"
