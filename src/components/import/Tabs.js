@@ -38,7 +38,7 @@ export default function ScrollableTabsButtonAuto() {
   const columnsCargo = [
     {
       field: 'cargo_sequence_number',
-      name: 'Cargo Sequence Number',
+      name: 'Sequence Number',
       options: {
         filter: true,
         sort: true
@@ -46,7 +46,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_cargo_volume_m3',
-      name: 'Container cargo volume m3',
+      name: 'Volume m3',
       options: {
         filter: true,
         sort: true
@@ -54,7 +54,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_cargo_weight_kg',
-      name: 'Container cargo weight kg',
+      name: 'Weight kg',
       options: {
         filter: true,
         sort: true
@@ -62,7 +62,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_cycfs_item',
-      name: 'Container cycfs item',
+      name: 'Cycfs item',
       options: {
         filter: true,
         sort: true
@@ -70,7 +70,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_kind_of_packages',
-      name: 'Container kind of packages',
+      name: 'Kind of packages',
       options: {
         filter: true,
         sort: true
@@ -78,7 +78,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_loading_status',
-      name: 'Container loading status',
+      name: 'Status',
       options: {
         filter: true,
         sort: true
@@ -86,7 +86,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_loading_status_code',
-      name: 'Container loading status code',
+      name: 'Status code',
       options: {
         filter: true,
         sort: true
@@ -102,7 +102,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_size_and_type_iso_code',
-      name: 'Container size and type iso code',
+      name: 'Iso code',
       options: {
         filter: true,
         sort: true
@@ -110,7 +110,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'container_tare_weight_kg',
-      name: 'Container tare weight kg',
+      name: 'Weight/kg',
       options: {
         filter: true,
         sort: true
@@ -118,7 +118,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'is_container_short_shipped',
-      name: 'Is container short shipped',
+      name: 'Shipped',
       options: {
         filter: true,
         sort: true
@@ -126,7 +126,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'is_dangerous_container',
-      name: 'Is dangerous container',
+      name: 'Dangerous',
       options: {
         filter: true,
         sort: true
@@ -134,7 +134,7 @@ export default function ScrollableTabsButtonAuto() {
     },
     {
       field: 'is_shipper_owned_container',
-      name: 'Is shipper owned container',
+      name: 'Owned',
       options: {
         filter: true,
         sort: true
@@ -177,7 +177,8 @@ export default function ScrollableTabsButtonAuto() {
   const dataCargo = row.cargo_descriptions.map((val, index, arr) => {
     if (val.cargo_in_containers.length >= 1){
       return val.cargo_in_containers.map((item, index, arr) => {
-        return item
+        const columns = Object.keys(item)
+        return item,columns
         })
     }
     else {
