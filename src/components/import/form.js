@@ -370,6 +370,7 @@ const ImportForm = () => {
             size="small"
             className={classes.button}
             onClick={() => update(index, values)}
+            disabled
           >
             <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
             Save
