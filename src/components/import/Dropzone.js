@@ -1,12 +1,13 @@
-import React, { useCallback, useState, useContext, useEffect } from "react";
-import { useDropzone } from "react-dropzone";
-import Paper from "@material-ui/core/Paper";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import Divider from "@material-ui/core/Divider";
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
+import React, { useCallback, useState, useContext, useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
+import Paper from '@material-ui/core/Paper';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Divider from '@material-ui/core/Divider';
+import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+import axios from 'axios';
 
-import FolderSVG from "@material-ui/icons/Folder";
-import { ImportContext } from "../../context/TDImportContext";
+import FolderSVG from '@material-ui/icons/Folder';
+import { ImportContext } from '../../context/TDImportContext';
 
 const Dropzone = () => {
   const [isUploaded, setUploaded] = useState(false);
@@ -14,11 +15,27 @@ const Dropzone = () => {
   const { upload } = context;
   const onDrop = useCallback(acceptedFile => {
     console.log(acceptedFile);
-    setTimeout(() => {
-      console.log("async");
-      setUploaded({ isUploaded: true });
-      upload();
-    }, 5000);
+    let fdata = new FormData();
+    fdata.append('file', acceptedFile[0], acceptedFile[0].name);
+    console.log(fdata);
+    const opt = {
+      method: 'POST',
+      url: 'http://31.13.251.24:4000/api/post_file',
+      data: fdata,
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      json: true
+    };
+    axios(opt).then(res => {
+      console.log(res);
+      if (res.status === 200) {
+        setUploaded({ isUploaded: true });
+        upload(res.data);
+      }
+      console.log(res.data);
+    });
   }, []);
   const {
     acceptedFiles,
@@ -29,7 +46,7 @@ const Dropzone = () => {
     isDragAccept
   } = useDropzone({
     onDrop,
-    accept: ".doc, image/*",
+    accept: '.doc, .txt',
     open,
     noClick: false,
     noKeyboard: true
@@ -41,10 +58,10 @@ const Dropzone = () => {
     <Paper
       elevation={12}
       style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        alignSelf: "center"
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        alignSelf: 'center'
       }}
     >
       <div
@@ -52,31 +69,31 @@ const Dropzone = () => {
         style={{
           borderRadius: 8,
           padding: 0,
-          padding: "4.5vh",
-          display: "flex",
+          padding: '4.5vh',
+          display: 'flex',
           flex: 1,
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
           background: `repeating-linear-gradient(
   45deg,
   #606dbc,
   #606dbc 10px,
   #465298 10px,
   #465298 20px)`,
-          cursor: "pointer"
+          cursor: 'pointer'
         }}
       >
-        <FolderSVG style={{ fontSize: 52, color: "#fff" }} />
+        <FolderSVG style={{ fontSize: 52, color: '#fff' }} />
         <input {...getInputProps()} />
         {isDragAccept && (
-          <p style={{ color: "#fff" }}>All files will be accepted</p>
+          <p style={{ color: '#fff' }}>All files will be accepted</p>
         )}
         {isDragReject && (
-          <p style={{ color: "#fff" }}>Some files will be rejected</p>
+          <p style={{ color: '#fff' }}>Some files will be rejected</p>
         )}
         {!isDragActive && (
-          <p style={{ color: "#fff" }}>Drop some files here ...</p>
+          <p style={{ color: '#fff' }}>Drop some files here ...</p>
         )}
       </div>
       {(() => {
@@ -84,33 +101,33 @@ const Dropzone = () => {
           return (
             <div
               style={{
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                padding: "3.5vh"
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                padding: '3.5vh'
               }}
             >
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div
                   style={{
-                    display: "inherit",
-                    flexDirection: "row",
+                    display: 'inherit',
+                    flexDirection: 'row',
                     flex: 1,
-                    alignItems: "center"
+                    alignItems: 'center'
                   }}
                 >
-                  <div style={{ flex: 3, textAlign: "left" }}>
+                  <div style={{ flex: 3, textAlign: 'left' }}>
                     {acceptedFiles.map(el => el.path)}
                   </div>
                   <div
                     style={{
                       flex: 1,
-                      alignSelf: "flex-end",
-                      textAlign: "right"
+                      alignSelf: 'flex-end',
+                      textAlign: 'right'
                     }}
                   >
                     <CheckCircleOutline
-                      style={{ color: isUploaded ? "green" : "grey" }}
+                      style={{ color: isUploaded ? 'green' : 'grey' }}
                     />
                   </div>
                 </div>

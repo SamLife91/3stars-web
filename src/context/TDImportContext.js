@@ -1,8 +1,8 @@
 import React, { useContext, createContext, useReducer, useState } from 'react';
-import mockdata from '../mock/import-data';
+// import mockdata from '../mock/import-data';
 // const mockdata = React.lazy(() => import("../mock/import-data"));
 export const ImportContext = React.createContext();
-console.log(mockdata);
+// console.log(mockdata);
 export const ImportProvider = props => {
   const [state, setState] = useState({
     activeIndex: 0,
@@ -11,12 +11,16 @@ export const ImportProvider = props => {
   const [instruction, setInstruction] = useState({
     ship: {}
   });
-  const uploadFile = () => {
-    state.deals = mockdata.shipment_informations;
-    instruction.ship = mockdata.shipment_instruction;
-    console.log(instruction.ship);
-    setState({ ...state, ...state.deals });
-    setInstruction({ ...instruction.ship });
+  const uploadFile = file => {
+    if (file) {
+      state.deals = file.shipment_informations;
+      instruction.ship = file.shipment_instruction;
+      console.log(instruction.ship);
+      setState({ ...state, ...state.deals });
+      setInstruction({ ...instruction.ship });
+    } else {
+      console.log('ttt');
+    }
   };
   const count = type => {
     let curr = state.activeIndex;
