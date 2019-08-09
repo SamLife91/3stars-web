@@ -1,18 +1,9 @@
-import React, { useEffect, useContext, useState, setState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-// import Boxider from "@material-ui/core/Divider";
 import SaveIcon from '@material-ui/icons/Save';
 import { ImportContext } from '../../context/TDImportContext';
 
@@ -48,8 +39,7 @@ const ImportForm = () => {
   const classes = useStyles();
 
   const context = useContext(ImportContext);
-  const { deals, index, row, update, instruction } = context;
-  console.log(row.first_record_of_b_1.bol_number);
+  const { index, row, update, instruction } = context;
   const [values, setValues] = React.useState({
     type: row.first_record_of_b_1.bol_number,
     booking: '',
@@ -77,15 +67,11 @@ const ImportForm = () => {
   const notifypartyLB = row.parties_concern.notify_party_fields.map(el =>
     Object.values(el).join()
   );
-  console.log(instruction);
   useEffect(() => {
-    console.log('mounted');
-    console.log(values);
     resetValues(values);
   }, [index]);
 
   const handleChange = name => event => {
-    console.log(event.target.value);
     setValues({
       ...values,
       [name]: event.target.value

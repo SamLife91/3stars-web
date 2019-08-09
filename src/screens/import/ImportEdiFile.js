@@ -1,21 +1,18 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
+import React, { useContext } from 'react';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
 
-import Dropzone from "../../components/import/Dropzone";
-import ListEdiFile from "../../components/import/ListEdiFile";
-import ReviewEdiFile from "../../components/import/form";
-import EditDeal from "../../components/import/editDeal";
+import Dropzone from '../../components/import/Dropzone';
+import ListEdiFile from '../../components/import/ListEdiFile';
+import EditDeal from '../../components/import/editDeal';
 
-import Divider from "@material-ui/core/Divider";
-
-import { ImportProvider } from "../../context/TDImportContext";
+import { ImportProvider } from '../../context/TDImportContext';
+import { UIcontext } from '../../context/UIcontext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,9 +20,8 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(5, 0)
   }
 }));
-
 function getSteps() {
-  return ["Import Edi File", "Edit", "Confirm"];
+  return ['Import Edi File', 'Edit', 'Confirm'];
 }
 
 function getStepContent(step) {
@@ -39,17 +35,18 @@ function getStepContent(step) {
     case 2:
       return <ListEdiFile />;
     default:
-      return "err";
+      return 'err';
   }
 }
 
 const ImportEdifile = props => {
+  const context = useContext(UIcontext);
+  console.log(context);
+  const { file } = context;
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
-  console.log(props);
-
   function handleNext() {
     let newSkipped = skipped;
 
@@ -99,9 +96,9 @@ const ImportEdifile = props => {
               {getStepContent(activeStep)}
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  marginTop: "1.5vh"
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  marginTop: '1.5vh'
                 }}
               >
                 <Button
@@ -109,8 +106,9 @@ const ImportEdifile = props => {
                   color="primary"
                   onClick={handleNext}
                   className={classes.button}
+                  disabled={file === false}
                 >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
                 <Button
                   disabled={activeStep <= 1}
@@ -123,7 +121,6 @@ const ImportEdifile = props => {
             </Container>
           )}
         </div>
-        {/* </Paper> */}
       </Container>
     </ImportProvider>
   );

@@ -8,11 +8,14 @@ import axios from 'axios';
 
 import FolderSVG from '@material-ui/icons/Folder';
 import { ImportContext } from '../../context/TDImportContext';
+import { UIcontext } from '../../context/UIcontext';
 
 const Dropzone = () => {
   const [isUploaded, setUploaded] = useState(false);
   const context = useContext(ImportContext);
   const { upload } = context;
+  const uictx = useContext(UIcontext);
+  const { setFile } = uictx;
   const onDrop = useCallback(acceptedFile => {
     console.log(acceptedFile);
     let fdata = new FormData();
@@ -31,6 +34,7 @@ const Dropzone = () => {
     axios(opt).then(res => {
       console.log(res);
       if (res.status === 200) {
+        setFile();
         setUploaded({ isUploaded: true });
         upload(res.data);
       }

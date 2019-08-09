@@ -1,16 +1,14 @@
-import React, { Component } from "react";
-import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
-import { withRouter } from "react-router";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from 'react';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import './App.css';
 
-import ImportEdi from "./screens/import/ImportEdiFile";
-import Main from "./screens/Main";
-import MainLayout from "./layouts/Main";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+import ImportEdi from './screens/import/ImportEdiFile';
+import Main from './screens/Main';
+import MainLayout from './layouts/Main';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 
-import { UiProvider } from "./context/UIcontext";
+import { UiProvider } from './context/UIcontext';
 
 class App extends Component {
   render() {
@@ -22,12 +20,7 @@ class App extends Component {
               mainComponent={
                 <Switch>
                   <Route exact path="/" component={Main} label="home" />
-                  <Route
-                    path="/import"
-                    label="test"
-                    component={ImportEdi}
-                    label="import"
-                  />
+                  <Route path="/import" component={ImportEdi} label="import" />
                   <Route render={() => <h1>404 Error</h1>} />
                 </Switch>
               }

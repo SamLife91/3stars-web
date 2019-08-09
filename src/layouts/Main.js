@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState, setState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { UIcontext } from "../context/UIcontext";
+import React, { useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { UIcontext } from '../context/UIcontext';
 
 const useStyles = makeStyles(theme => ({
   base: {
-    display: "flex"
+    display: 'flex'
   },
   main: {
-    display: "flex",
-    flexDirection: "column"
+    display: 'flex',
+    flexDirection: 'column'
   },
   col: {
-    display: "flex",
+    display: 'flex',
     // flex: 1,
-    flexDirection: "column"
+    flexDirection: 'column'
   },
   hidden: {
-    display: "none"
+    display: 'none'
   }
 }));
 
@@ -34,11 +34,11 @@ const MainLayout = props => {
           <div
             className={fw ? styles.hidden : styles.col}
             style={{
-              width: "20vw",
-              position: "fixed",
+              width: '20vw',
+              position: 'fixed',
               left: 0,
               top: 0,
-              height: "100vh"
+              height: '100vh'
             }}
           >
             {props.sidebarComponent}
@@ -48,7 +48,7 @@ const MainLayout = props => {
 
       <div
         className={styles.col}
-        style={{ width: fw ? "100vw" : "80vw", marginLeft: fw ? 0 : "20vw" }}
+        style={{ width: fw ? '100vw' : '80vw', marginLeft: fw ? 0 : '20vw' }}
       >
         <div>{props.headerComponent}</div>
         <div>{props.mainComponent}</div>

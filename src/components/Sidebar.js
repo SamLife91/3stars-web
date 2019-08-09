@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Route, Link, NavLink } from 'react-router-dom'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import Collapse from '@material-ui/core/Collapse'
-import Drawer from '@material-ui/core/Drawer'
-import Divider from '@material-ui/core/Divider'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import { makeStyles } from '@material-ui/core/styles'
-import { UIcontext, UiProvider, UiConsumer } from '../context/UIcontext'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Collapse from '@material-ui/core/Collapse';
+import Divider from '@material-ui/core/Divider';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   CloudDownload,
   CloudUpload,
@@ -46,7 +44,7 @@ import {
   Place,
   LocalAtm,
   LocalOffer
-} from '@material-ui/icons/'
+} from '@material-ui/icons/';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,7 +67,6 @@ const useStyles = makeStyles(theme => ({
     padding: 'unset',
     '&:hover': {
       boxShadow: '#3f51b5 -4px 0px 0px inset',
-      // backgroundColor: 'unset',
       transition: '0.5s'
     }
   },
@@ -88,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   active: {
     boxShadow: '#3f51b5 -4px 0px 0px inset'
   }
-}))
+}));
 const data = [
   {
     name: 'Transport Deals',
@@ -298,13 +295,13 @@ const data = [
       }
     ]
   }
-]
+];
 const NestedList = props => {
-  const classes = useStyles()
-  const [state, setState] = useState(true)
+  const classes = useStyles();
+  const [state, setState] = useState(true);
   const handleClick = item => {
-    setState(state => ({ [item]: !state[item] }))
-  }
+    setState(state => ({ [item]: !state[item] }));
+  };
   // const getNavLinkClass = path => {
   //   return location.pathname === path ? classes.active : ''
   // }
@@ -333,7 +330,7 @@ const NestedList = props => {
               </ListItem>
             </List>
           </div>
-        )
+        );
       }
       return (
         <div key={subOption.name}>
@@ -351,9 +348,9 @@ const NestedList = props => {
             {handler(subOption.children)}
           </Collapse>
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
   return (
     // <Drawer
     //   variant="persistent"
@@ -368,6 +365,6 @@ const NestedList = props => {
       {handler(data)}
     </List>
     // </Drawer>
-  )
-}
-export default NestedList
+  );
+};
+export default NestedList;
