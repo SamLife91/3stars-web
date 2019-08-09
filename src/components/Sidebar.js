@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Route, Link, NavLink } from "react-router-dom";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Collapse from "@material-ui/core/Collapse";
-import Drawer from "@material-ui/core/Drawer";
-import Divider from "@material-ui/core/Divider";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import { makeStyles } from "@material-ui/core/styles";
-import { UIcontext, UiProvider, UiConsumer } from "../context/UIcontext";
+import React, { useContext, useEffect, useState } from 'react'
+import { Route, Link, NavLink } from 'react-router-dom'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Collapse from '@material-ui/core/Collapse'
+import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
+import InboxIcon from '@material-ui/icons/MoveToInbox'
+import ExpandLess from '@material-ui/icons/ExpandLess'
+import ExpandMore from '@material-ui/icons/ExpandMore'
+import { makeStyles } from '@material-ui/core/styles'
+import { UIcontext, UiProvider, UiConsumer } from '../context/UIcontext'
 import {
   CloudDownload,
   CloudUpload,
@@ -46,255 +46,268 @@ import {
   Place,
   LocalAtm,
   LocalOffer
-} from "@material-ui/icons/";
+} from '@material-ui/icons/'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     maxWidth: 460,
     backgroundColor: theme.palette.background.paper,
-    boxShadow: "0 0 1px 1px grey",
-    position: "fixed"
-  },
-  links: {
-    textDecoration: "none",
-    color: "inherit",
-    display: "flex",
-    width: "100%"
+    boxShadow: '0 0 1px 1px grey',
+    position: 'fixed'
   },
   menuHeader: {
-    paddingLeft: "30px"
+    paddingLeft: '30px'
   },
   list: {
-    backgroundColor: "#f1f1f1a3",
-    padding: "unset"
+    backgroundColor: '#f1f1f1a3',
+    padding: 'unset'
   },
   listItem: {
-    display: "flex",
-    "&:hover": {
-      boxShadow: "#3f51b5 -4px 0px 0px inset",
+    display: 'flex',
+    padding: 'unset',
+    '&:hover': {
+      boxShadow: '#3f51b5 -4px 0px 0px inset',
       // backgroundColor: 'unset',
-      transition: "0.5s"
+      transition: '0.5s'
     }
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
+    width: '100%',
+    padding: '8px 16px',
+    display: 'inherit',
+    alignItems: 'center',
+    '&.active': {
+      boxShadow: '#3f51b5 -4px 0px 0px inset',
+      backgroundColor: 'rgba(0, 0, 0, 0.08)'
+    }
+  },
+  active: {
+    boxShadow: '#3f51b5 -4px 0px 0px inset'
   }
-}));
+}))
 const data = [
   {
-    name: "Transport Deals",
+    name: 'Transport Deals',
     icon: <LocalShipping />,
     children: [
       {
-        name: "Import",
-        url: "/import",
+        name: 'Import',
+        url: '/import',
         icon: <CloudDownload />
       },
       {
-        name: "Export",
-        url: "/export",
+        name: 'Export',
+        url: '/export',
         icon: <CloudUpload />
       },
       {
-        name: "Cross Trade",
-        url: "/crossTrade",
+        name: 'Cross Trade',
+        url: '/crossTrade',
         icon: <Shuffle />
       },
       {
-        name: "ECS",
-        url: "/esc",
-        icon: ""
+        name: 'ECS',
+        url: '/esc',
+        icon: ''
       },
       {
-        name: "Ohter Deals",
-        url: "/otherDeals",
+        name: 'Ohter Deals',
+        url: '/otherDeals',
         icon: <MoreHoriz />
       }
     ]
   },
   {
-    name: "Operations",
+    name: 'Operations',
     icon: <SwapHorizontalCircle />,
     children: [
       {
-        name: "Container Movement",
-        url: "/containerMovement",
+        name: 'Container Movement',
+        url: '/containerMovement',
         icon: <Ballot />
       },
       {
-        name: "Vessel Schedule",
-        url: "/vesselSchedule",
+        name: 'Vessel Schedule',
+        url: '/vesselSchedule',
         icon: <Assignment />
       },
       {
-        name: "Vessel/Voyage Management",
-        url: "/vessel/voyageManagement",
+        name: 'Vessel/Voyage Management',
+        url: '/vessel/voyageManagement',
         icon: <Settings />
       },
       {
-        name: "Vessel Follow Up",
-        url: "/vesselFollowUp",
+        name: 'Vessel Follow Up',
+        url: '/vesselFollowUp',
         icon: <VerticalAlignTop />
       },
       {
-        name: "Trucking Orders",
-        url: "/truckingOrders",
+        name: 'Trucking Orders',
+        url: '/truckingOrders',
         icon: <Description />
       }
     ]
   },
   {
-    name: "Invoicing",
+    name: 'Invoicing',
     icon: <Timeline />,
     children: [
       {
-        name: "Invoices",
-        url: "invoices",
+        name: 'Invoices',
+        url: 'invoices',
         icon: <Receipt />
       },
       {
-        name: "Bills",
-        url: "/bills",
+        name: 'Bills',
+        url: '/bills',
         icon: <EuroSymbol />
       }
     ]
   },
   {
-    name: "Accounting & Financing",
+    name: 'Accounting & Financing',
     icon: <TrendingUp />,
     children: [
       {
-        name: "Payments",
-        url: "payments",
+        name: 'Payments',
+        url: 'payments',
         icon: <Payment />
       },
       {
-        name: "Overdraft Report",
-        url: "/overdraftReport",
+        name: 'Overdraft Report',
+        url: '/overdraftReport',
         icon: <Layers />
       },
       {
-        name: "Party Balance",
-        url: "/partyBalance",
+        name: 'Party Balance',
+        url: '/partyBalance',
         icon: <LinearScale />
       },
       {
-        name: "Export to 3 rd party sftw",
-        url: "/exportTo",
+        name: 'Export to 3 rd party sftw',
+        url: '/exportTo',
         icon: <Reply />
       },
       {
-        name: "Currency rates",
-        url: "/currencyRates",
+        name: 'Currency rates',
+        url: '/currencyRates',
         icon: <StarRate />
       }
     ]
   },
   {
-    name: "Address book",
+    name: 'Address book',
     icon: <AccountBox />,
     children: [
       {
-        name: "Address Book",
-        url: "addressBook",
+        name: 'Address Book',
+        url: 'addressBook',
         icon: <AccountBox />
       },
       {
-        name: "Customer Management",
-        url: "/customerManagement",
+        name: 'Customer Management',
+        url: '/customerManagement',
         icon: <PermIdentity />
       }
     ]
   },
   {
-    name: "Reports",
+    name: 'Reports',
     icon: <SpeakerNotes />,
     children: [
       {
-        name: "Financial report",
-        url: "financialReport",
+        name: 'Financial report',
+        url: 'financialReport',
         icon: <PieChart />
       },
       {
-        name: "Equipment Report",
-        url: "/equipmentReport",
+        name: 'Equipment Report',
+        url: '/equipmentReport',
         icon: <SettingsApplications />
       },
       {
-        name: "Vessels Report",
-        url: "/vesselsReport",
+        name: 'Vessels Report',
+        url: '/vesselsReport',
         icon: <DirectionsBoat />
       },
       {
-        name: "Reports to HQ",
-        url: "/reportsToHQ",
+        name: 'Reports to HQ',
+        url: '/reportsToHQ',
         icon: <Map />
       }
     ]
   },
   {
-    name: "Documents & attachments",
+    name: 'Documents & attachments',
     icon: <Layers />,
     children: [
       {
-        name: "MBL",
-        url: "mbl",
-        icon: ""
+        name: 'MBL',
+        url: 'mbl',
+        icon: ''
       },
       {
-        name: "Attachments by deal",
-        url: "/attachmentsByDeal",
+        name: 'Attachments by deal',
+        url: '/attachmentsByDeal',
         icon: <Attachment />
       }
     ]
   },
   {
-    name: "Settings",
+    name: 'Settings',
     icon: <Settings />,
     children: [
       {
-        name: "General",
-        url: "general",
+        name: 'General',
+        url: 'general',
         icon: <PowerSettingsNew />
       },
       {
-        name: "Documents",
-        url: "/documents",
+        name: 'Documents',
+        url: '/documents',
         icon: <FileCopy />
       },
       {
-        name: "Countries and Locations",
-        url: "/countriesAndLocations",
+        name: 'Countries and Locations',
+        url: '/countriesAndLocations',
         icon: <Place />
       },
       {
-        name: "Nomenclatures",
-        url: "/nomenclatures",
+        name: 'Nomenclatures',
+        url: '/nomenclatures',
         icon: <LocalOffer />
       },
       {
-        name: "Price List",
-        url: "/priceList",
+        name: 'Price List',
+        url: '/priceList',
         icon: <LocalAtm />
       },
       {
-        name: "User Management",
-        url: "/userManagement",
-        icon: ""
+        name: 'User Management',
+        url: '/userManagement',
+        icon: ''
       },
       {
-        name: "System",
-        url: "/system",
+        name: 'System',
+        url: '/system',
         icon: <Settings />
       }
     ]
   }
-];
+]
 const NestedList = props => {
-  const classes = useStyles();
-  const [state, setState] = useState(true);
+  const classes = useStyles()
+  const [state, setState] = useState(true)
   const handleClick = item => {
-    setState(state => ({ [item]: !state[item] }));
-  };
+    setState(state => ({ [item]: !state[item] }))
+  }
+  // const getNavLinkClass = path => {
+  //   return location.pathname === path ? classes.active : ''
+  // }
   const handler = children => {
     return children.map(subOption => {
       if (!subOption.children) {
@@ -307,7 +320,7 @@ const NestedList = props => {
                 // style={{ display: 'flex', justifyContent: 'flex-end' }}
                 className={classes.listItem}
               >
-                <NavLink to={subOption.url} exact className={classes.links}>
+                <NavLink to={subOption.url} exact className={classes.link}>
                   <div>
                     <ListItemIcon>
                       {subOption.icon || <InboxIcon />}
@@ -320,7 +333,7 @@ const NestedList = props => {
               </ListItem>
             </List>
           </div>
-        );
+        )
       }
       return (
         <div key={subOption.name}>
@@ -338,9 +351,9 @@ const NestedList = props => {
             {handler(subOption.children)}
           </Collapse>
         </div>
-      );
-    });
-  };
+      )
+    })
+  }
   return (
     // <Drawer
     //   variant="persistent"
@@ -348,13 +361,13 @@ const NestedList = props => {
     //   open
     //   classes={{ paper: classes.list }}
     // >
-    <List style={{ boxShadow: "0 0 3px 0px #c3c3c3", height: "100%" }}>
-      <ListItem key="menuHeading" disableGutters>
+    <List style={{ boxShadow: '0 0 3px 0px #c3c3c3', height: '100%' }}>
+      <ListItem key="menuHeading">
         <ListItemText className={classes.menuHeader} primary="3 stars admin" />
       </ListItem>
       {handler(data)}
     </List>
     // </Drawer>
-  );
-};
-export default NestedList;
+  )
+}
+export default NestedList
