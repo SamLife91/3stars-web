@@ -1,21 +1,21 @@
-import React, { useState, useContext } from 'react'
-import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
-import MaterialDatatable from 'material-datatable'
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import MaterialDatatable from 'material-datatable';
 
-import { ImportContext } from '../../context/TDImportContext'
+import { ImportContext } from '../../context/TDImportContext';
 
 function TabContainer(props) {
-  return <Typography component="div">{props.children}</Typography>
+  return <Typography component="div">{props.children}</Typography>;
 }
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired
-}
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,16 +24,15 @@ const useStyles = makeStyles(theme => ({
     padding: '24px 26px',
     backgroundColor: theme.palette.background.paper
   }
-}))
+}));
 
 export default function ScrollableTabsButtonAuto() {
-  const classes = useStyles()
-  const [value, setValue] = React.useState(0)
-  const context = useContext(ImportContext)
-  const { row } = context
-  console.log(row)
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  const context = useContext(ImportContext);
+  const { row } = context;
   function handleChange(event, newValue) {
-    setValue(newValue)
+    setValue(newValue);
   }
   const columnsCargo = [
     {
@@ -172,25 +171,16 @@ export default function ScrollableTabsButtonAuto() {
         sort: true
       }
     }
-  ]
+  ];
 
-  const dataCargo = row.cargo_descriptions.map((val, index, arr) => {
-    if (val.cargo_in_containers.length >= 1){
-      return val.cargo_in_containers.map((item, index, arr) => {
-        const columns = Object.keys(item)
-        return item,columns
-        })
-    }
-    else {
-      return console.log('val.cargo_in_containers = 0')
-      }
-  })
+  const dataCargo = row.cargo_descriptions[0].cargo_in_containers.map(el => el);
+
   const payablesData = row.freight_informations.filter(
     item => item.prepaid_or_collect_code === 'P'
-  )
+  );
   const collectiblesData = row.freight_informations.filter(
     item => item.prepaid_or_collect_code === 'C'
-  )
+  );
   const payablesAndCollectiblesColumns = [
     {
       field: 'amount',
@@ -320,12 +310,12 @@ export default function ScrollableTabsButtonAuto() {
         sort: true
       }
     }
-  ]
+  ];
 
   const options = {
     filterType: 'checkbox',
     responsive: 'scroll'
-  }
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -384,5 +374,5 @@ export default function ScrollableTabsButtonAuto() {
         </TabContainer>
       )}
     </div>
-  )
+  );
 }
