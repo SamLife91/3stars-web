@@ -1,13 +1,11 @@
 import React, { useContext, createContext, useReducer, useState } from 'react';
-// import mockdata from '../mock/import-data';
-// const mockdata = React.lazy(() => import("../mock/import-data"));
 export const ImportContext = React.createContext();
-// console.log(mockdata);
 export const ImportProvider = props => {
   const [state, setState] = useState({
-    activeIndex: 0,
+    // activeIndex: 0,
     deals: []
   });
+  const [index, setIndex] = useState(0);
   const [instruction, setInstruction] = useState({
     ship: {}
   });
@@ -23,9 +21,9 @@ export const ImportProvider = props => {
     }
   };
   const count = type => {
-    let curr = state.activeIndex;
+    let curr = index;
     type === 'decrement' ? curr-- : curr++;
-    setState({ ...state, activeIndex: curr });
+    setIndex(curr);
   };
 
   const updateRow = (index, args) => {
@@ -52,10 +50,10 @@ export const ImportProvider = props => {
   return (
     <ImportContext.Provider
       value={{
-        index: state.activeIndex,
+        index: index,
         deals: state.deals,
         count: count,
-        row: state.deals[state.activeIndex],
+        row: state.deals[index],
         update: updateRow,
         upload: uploadFile,
         instruction: instruction

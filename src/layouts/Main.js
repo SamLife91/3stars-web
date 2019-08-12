@@ -21,10 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MainLayout = props => {
-  const ctx = useContext(UIcontext);
-  console.log(ctx);
   const { fw } = useContext(UIcontext);
-  console.log(fw);
   const styles = useStyles();
 
   return (
