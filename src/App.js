@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 
@@ -7,7 +7,6 @@ import Main from './screens/Main';
 import MainLayout from './layouts/Main';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-
 import { UiProvider } from './context/UIcontext';
 
 class App extends Component {

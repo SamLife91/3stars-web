@@ -41,7 +41,6 @@ function getStepContent(step) {
 
 const ImportEdifile = props => {
   const context = useContext(UIcontext);
-  console.log(context);
   const { file } = context;
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -80,7 +79,6 @@ const ImportEdifile = props => {
             );
           })}
         </Stepper>
-        {/* <Paper className={classes.root} elevation={10}> */}
         <div>
           {activeStep === steps.length ? (
             <div>

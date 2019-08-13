@@ -16,8 +16,6 @@ export const ImportProvider = props => {
       console.log(instruction.ship);
       setState({ ...state, ...state.deals });
       setInstruction({ ...instruction.ship });
-    } else {
-      console.log('ttt');
     }
   };
   const count = type => {

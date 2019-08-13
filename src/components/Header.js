@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -24,13 +24,11 @@ const useStyles = makeStyles(theme => ({
 const Header = props => {
   const history = createBrowserHistory();
   const location = history.location;
+  console.log(location.pathname);
 
   const classes = useStyles();
-  const { fw } = useContext(UIcontext);
+  // const { fw } = useContext(UIcontext);
 
-  useEffect(() => {
-    console.log(fw);
-  }, [fw]);
   return (
     <div className={classes.root}>
       <UIcontext.Consumer>
