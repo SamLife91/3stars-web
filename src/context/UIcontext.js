@@ -10,8 +10,8 @@ export const UiProvider = props => {
   const toggle = () => {
     setfw(!fw);
   };
-  const upl = () => {
-    setFileUp(!isFileUp);
+  const upl = flag => {
+    setFileUp(flag);
   };
   return (
     <UIcontext.Provider

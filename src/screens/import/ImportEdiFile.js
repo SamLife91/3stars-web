@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -29,7 +29,6 @@ function getStepContent(step) {
     case 0:
       return <Dropzone />;
     case 1:
-      // return <ReviewEdiFile />;
       return <EditDeal />;
 
     case 2:
@@ -41,7 +40,7 @@ function getStepContent(step) {
 
 const ImportEdifile = props => {
   const context = useContext(UIcontext);
-  const { file } = context;
+  const { file, setFile } = context;
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -60,6 +59,10 @@ const ImportEdifile = props => {
   function handleReset() {
     setActiveStep(0);
   }
+
+  useEffect(() => {
+    setFile(false);
+  }, []);
 
   return (
     <ImportProvider>
