@@ -34,7 +34,7 @@ const Dropzone = () => {
     axios(opt).then(res => {
       console.log(res);
       if (res.status === 200) {
-        setFile();
+        setFile(true);
         setUploaded({ isUploaded: true });
         upload(res.data);
       }
@@ -75,7 +75,7 @@ const Dropzone = () => {
           padding: 0,
           padding: '4.5vh',
           display: 'flex',
-          flex: 1,
+          height: '35vh',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
@@ -137,7 +137,7 @@ const Dropzone = () => {
                 </div>
                 <Divider />
                 <div style={{ flex: 1 }}>
-                  <LinearProgress />
+                  {!isUploaded ? <LinearProgress /> : <Divider />}
                 </div>
               </div>
             </div>
