@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import MaterialDatatable from 'material-datatable';
+import Warning from '@material-ui/icons/Warning';
+import Badge from '@material-ui/core/Badge';
 
 import { ImportContext } from '../../context/TDImportContext';
 
@@ -23,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     margin: '40px 0px',
     padding: '24px 0px',
     backgroundColor: theme.palette.background.paper
+  },
+  padding: {
+    padding: theme.spacing(0, 2)
   }
 }));
 
@@ -39,6 +44,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'cargo_sequence_number',
       name: 'Sequence Number',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -47,6 +53,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_cargo_volume_m3',
       name: 'Volume m3',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -55,6 +62,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_cargo_weight_kg',
       name: 'Weight kg',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -63,6 +71,8 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_cycfs_item',
       name: 'Cycfs item',
       options: {
+        width: 150,
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -71,6 +81,8 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_kind_of_packages',
       name: 'Kind of packages',
       options: {
+        width: 150,
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -79,6 +91,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_loading_status',
       name: 'Status',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -87,6 +100,8 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_loading_status_code',
       name: 'Status code',
       options: {
+        width: 150,
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -95,6 +110,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_number',
       name: 'Container number',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -103,6 +119,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_size_and_type_iso_code',
       name: 'Iso code',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -111,6 +128,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'container_tare_weight_kg',
       name: 'Weight/kg',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -119,6 +137,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'is_container_short_shipped',
       name: 'Shipped',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -127,14 +146,23 @@ export default function ScrollableTabsButtonAuto() {
       field: 'is_dangerous_container',
       name: 'Dangerous',
       options: {
+        headerNoWrap: true,
         filter: true,
-        sort: true
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return value.is_dangerous_container ? (
+            ' '
+          ) : (
+            <Warning style={{ color: 'red' }} />
+          );
+        }
       }
     },
     {
       field: 'is_shipper_owned_container',
       name: 'Owned',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -143,6 +171,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'seal_number',
       name: 'Seal number',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -151,6 +180,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'stowage_location',
       name: 'Stowage location',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -159,6 +189,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'tag',
       name: 'Tag',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -167,14 +198,25 @@ export default function ScrollableTabsButtonAuto() {
       field: 'unknown',
       name: 'unknown',
       options: {
+        headerNoWrap: true,
+        width: 100,
         filter: true,
         sort: true
       }
     }
   ];
 
-  const dataCargo = row.cargo_descriptions[0].cargo_in_containers.map(el => el);
+  const getDataCargo = () => {
+    const cargoInContainer = row.cargo_descriptions.map(el =>
+      el.cargo_in_containers.map(el => el)
+    );
+    const level = cargoInContainer.lenght;
+    const cargoInContainerFlat = cargoInContainer.flat(level);
+    console.log(cargoInContainerFlat);
+    return cargoInContainerFlat;
+  };
 
+  const dataCargo = getDataCargo();
   const payablesData = row.freight_informations.filter(
     item => item.prepaid_or_collect_code === 'P'
   );
@@ -186,6 +228,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'amount',
       name: 'Amount',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -194,6 +237,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'currency',
       name: 'Currency',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -202,6 +246,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'equivalent_amount',
       name: 'Equivalent Amount',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -210,6 +255,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'exchange_rate',
       name: 'Exchange Rate',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -218,6 +264,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'exchange_to_currency',
       name: 'Exchange to currency',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -226,6 +273,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'freight_charge_code',
       name: 'Freight Charge Code',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -234,6 +282,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'freight_charge_remark',
       name: 'Freight Charge Remark',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -242,6 +291,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'freight_unit_of_quantity',
       name: 'Freight Unit of Quantity',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -250,6 +300,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'payable_at',
       name: 'Rayable at',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -258,6 +309,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'prepaid_or_collect',
       name: 'Prepaid or Collect',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -266,6 +318,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'prepaid_or_collect_code',
       name: 'Prepaid or Collect Code',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -274,6 +327,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'quantity',
       name: 'Quantity',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -282,6 +336,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'rate_of_freight_charge',
       name: 'Rate of Freight Charge',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -290,6 +345,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'sequence_number',
       name: 'Sequence Number',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -298,6 +354,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'tag',
       name: 'Tag',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -306,6 +363,7 @@ export default function ScrollableTabsButtonAuto() {
       field: 'unknown',
       name: 'unknown',
       options: {
+        headerNoWrap: true,
         filter: true,
         sort: true
       }
@@ -316,6 +374,7 @@ export default function ScrollableTabsButtonAuto() {
     filterType: 'checkbox',
     responsive: 'scroll'
   };
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
@@ -327,10 +386,40 @@ export default function ScrollableTabsButtonAuto() {
           variant="scrollable"
           scrollButtons="auto"
         >
-          <Tab label="Cargo" />
-          <Tab label="Collectibles" />
-          <Tab label="Payables" />
-          <Tab label="All" />
+          <Tab
+            label={
+              <Badge
+                className={classes.padding}
+                color="primary"
+                badgeContent={dataCargo.length}
+              >
+                cargo
+              </Badge>
+            }
+          />
+          <Tab
+            label={
+              <Badge
+                className={classes.padding}
+                color="primary"
+                badgeContent={collectiblesData.length}
+              >
+                Collectibles
+              </Badge>
+            }
+          />
+          <Tab
+            label={
+              <Badge
+                className={classes.padding}
+                color="primary"
+                badgeContent={payablesData.length}
+              >
+                Payables
+              </Badge>
+            }
+          />
+          {/* <Tab label="All" /> */}
         </Tabs>
       </AppBar>
       {value === 0 && (
@@ -363,7 +452,7 @@ export default function ScrollableTabsButtonAuto() {
           />
         </TabContainer>
       )}
-      {value === 3 && (
+      {/* {value === 3 && (
         <TabContainer>
           <MaterialDatatable
             title={'All List'}
@@ -372,7 +461,7 @@ export default function ScrollableTabsButtonAuto() {
             options={options}
           />
         </TabContainer>
-      )}
+      )} */}
     </div>
   );
 }

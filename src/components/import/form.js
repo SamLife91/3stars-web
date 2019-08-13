@@ -198,7 +198,7 @@ const ImportForm = () => {
         </Box>
         <Box className={classes.row}>
           <TextField
-            value={values.pol || row.pol}
+            value={values.pol || row.first_record_of_b_1.place_of_loading}
             onInput={handleChange('pol')}
             className={classes.textField}
             id="standard-full-width"
