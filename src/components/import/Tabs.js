@@ -150,7 +150,7 @@ export default function ScrollableTabsButtonAuto() {
         filter: true,
         sort: true,
         customBodyRender: (value, tableMeta, updateValue) => {
-          return value.is_dangerous_container ? (
+          return !value.is_dangerous_container ? (
             ' '
           ) : (
             <Warning style={{ color: 'red' }} />
